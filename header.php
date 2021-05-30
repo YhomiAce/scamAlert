@@ -18,7 +18,7 @@
         <link href="global/social-mediab2b5.css" type="text/css" rel="stylesheet" />
     </head> 
     <body class="eupopup eupopup-bottom">
-    <form method="post" action="#" id="aspnetForm">
+    <form method="post" action="https://www.scamalert.sg/" id="aspnetForm">
         <div class="aspNetHidden">
             <input type="hidden" name="ctl05_TSM" id="ctl05_TSM" value="" />
             <input type="hidden" name="ctl06_TSSM" id="ctl06_TSSM" value="" />

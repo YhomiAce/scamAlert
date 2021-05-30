@@ -2,9 +2,9 @@
 
 // localhost
 $servername = "localhost";
-$dbName = "scamaler";
+$dbName = "scamAlert";
 $username = "root";
-$password = "";
+$password = "6969";
 
   try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbName", $username, $password);
