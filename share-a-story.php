@@ -1,6 +1,6 @@
 <?php 
-    require('config/controller.php');
-    include('header.php') 
+    require_once 'config/controller.php';
+    require_once('header.php') 
 
 ?>
 
@@ -496,4 +496,4 @@ Please note that you have to fill in all the fields in the form.</p>
 
 
 
- <?php include('footer.php') ?>
+ <?php require_once('footer.php') ?>

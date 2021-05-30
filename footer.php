@@ -167,7 +167,7 @@ Be An Advocate
     <em class="fab fa-facebook-f"></em>
     <div class="slider">
     <em class="fab fa-facebook-f"></em>
-    <a href="https://www.facebook.com/ncpc.sg" target="_blank">
+    <a href="#" target="_blank">
     <span class="icon-text">Facebook</span>
     </a>
     </div>
@@ -175,7 +175,7 @@ Be An Advocate
     <li>
     <em class="fab fa-instagram"></em>
     <div class="slider">
-    <a href="https://instagram.com/NCPCSG" target="_blank">
+    <a href="#" target="_blank">
     <em class="fab fa-instagram"></em>
     <span class="icon-text">Instagram</span>
     </a>
@@ -184,7 +184,7 @@ Be An Advocate
     <li>
     <em class="fab fa-youtube"></em>
     <div class="slider">
-    <a href="https://www.youtube.com/channel/UClEjzryYSyhd521q9je2faw" target="_blank">
+    <a href="#" target="_blank">
     <em class="fab fa-youtube"></em>
     <span class="icon-text">YouTube</span>
     </a>
@@ -193,7 +193,7 @@ Be An Advocate
     <li>
     <em class="fa fa-comments"></em>
     <div class="slider">
-    <a href="share-a-story.html">
+    <a href="share-a-story.php">
     <em class="fa fa-comments"></em>
     <span class="icon-text">Share a Story</span>
     </a>
@@ -202,7 +202,7 @@ Be An Advocate
     <li>
     <em class="fa fa-edit"></em>
     <div class="slider">
-    <a href="scam-iq-quiz.html" target="_blank">
+    <a href="#" target="_blank">
     <em class="fa fa-edit"></em>
     <span class="icon-text">Scam IQ Quiz</span>
     </a>
@@ -211,7 +211,7 @@ Be An Advocate
     <li>
     <em class="fa fa-edit"></em>
     <div class="slider">
-    <a href="support/quiz.html">
+    <a href="#">
     <em class="fa fa-edit"></em>
     <span class="icon-text">Quiz</span>
     </a>
@@ -229,7 +229,7 @@ Be An Advocate
     <li>
     <em class="fab fa-apple"></em>
     <div class="slider">
-    <a href="https://apps.apple.com/sg/app/scamshield/id1497144087" target="_blank">
+    <a href="#" target="_blank">
     <em class="fab fa-apple"></em>
     <span class="icon-text">ScamShield App</span>
     </a>
