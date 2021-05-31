@@ -18,13 +18,13 @@
 
     function  share($conn,$firstname,$lastname,$email,$phone,$first_scam,$scammer_report,$scammer_username,$scammer_contact,
     $scammer_email,$scammer_other_info,
-    $money_lost,$policeReport,$scam_exp,$file1,$file2,$anonymous)
+    $money_lost,$policeReport,$scam_exp,$file1,$file2,$anonymous,$token)
     {
         $sql = "INSERT INTO sharestory(firstname,lastname,email,phone,first_scam,scammer_report,scammer_username,scammer_contact,
-                scammer_email,scammer_other_info,money_lost,policeReport,scam_exp,file1,file2,anonymous) 
+                scammer_email,scammer_other_info,money_lost,policeReport,scam_exp,file1,file2,anonymous,storyToken)
                 
                 VALUES(:firstname,:lastname,:email,:phone,:first_scam,:scammer_report,:scammer_username,:scammer_contact,
-                :scammer_email,:scammer_other_info,:money_lost,:policeReport,:scam_exp,:file1,:file2,:anonymous)";
+                :scammer_email,:scammer_other_info,:money_lost,:policeReport,:scam_exp,:file1,:file2,:anonymous,:token)";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute([
@@ -44,7 +44,8 @@
             'scam_exp'           =>$scam_exp,
             'file1'              =>$file1,
             'file2'              =>$file2,
-            'anonymous'          =>$anonymous
+            'anonymous'          =>$anonymous,
+            'token'              =>$token
         ]);
         return true;
     }
@@ -60,6 +61,123 @@
         return true;
     }
 
+
+
+
+    function fetchStory($conn,$storyToken)
+    {
+        $sql = "SELECT firstname,lastname,email,phone,first_scam,scammer_report,scammer_username,scammer_contact,date,
+                        scammer_email,scammer_other_info,money_lost,policeReport,scam_exp,file1,file2,anonymous,storyToken
+                FROM sharestory 
+                WHERE storyToken = :storyToken";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['storyToken'=>$storyToken]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    function fetchAllEmail($conn)
+    {
+        $sql = "SELECT email FROM subscribers";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        return $result;
+    }
+    
+
+
+    function fetchId($conn)
+    {
+        $sql = "SELECT id FROM sharestory";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        return $result;
+    }
+
+    function fetchAllStories($conn,$id)
+    {
+        $sql = "SELECT scam_exp,scammer_report,date,storyToken FROM sharestory WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id'=>$id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+     // after sorting
+     
+    if(isset($_POST['sort']))
+     {
+        
+        $sort = $_POST['sort'];
+        
+        $key = $_POST['key'];
+        
+        if($sort == 'Latest'){
+            $sql = "SELECT id FROM sharestory WHERE scammer_report = :scammer_report ORDER BY date DESC";
+        }else{
+            $sql = "SELECT id FROM sharestory WHERE scammer_report = :scammer_report ORDER BY date ASC";        
+        }
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'scammer_report'    =>$key,
+            
+            ]);
+        $results = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        
+        foreach($results as $result){
+            $storyIdsDetails     =   fetchAllStories($conn,$result);
+        echo '
+        <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body p-5">
+                            <div class="card-date text-primary">'.explode(" ",$storyIdsDetails['date'])[0].'</div>
+                            <h4 class="card-title">
+                                <a class="text-dark" href="../stories/view_story.php?story='.$storyIdsDetails['storyToken'].'">'.$storyIdsDetails['scammer_report'].'</a>
+                            </h4>
+                            <p class="card-text">'.substr($storyIdsDetails['scam_exp'],0,400).'</p>
+                        </div>
+                    </div>
+                </div>
+        ';
+        }
+     }
+
+
+    // for type of scam
+
+    function fetchTypeOfScam($conn)
+    {
+        $sql = "SELECT scammer_report FROM sharestory";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        return $result;
+    }
+
+    function fetchTypeOfScam_forEach($conn,$scammer_report)
+    {
+        $sql = "SELECT id FROM sharestory WHERE scammer_report = :scammer_report";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['scammer_report'=>$scammer_report]);
+        $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        return $result;
+    }
+
+    function fetchAllStorySec($conn,$scammer_report)
+    {
+        $sql = "SELECT scam_exp,scammer_report,date,storyToken FROM sharestory WHERE scammer_report = :scammer_report";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['scammer_report'=>$scammer_report]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+   
 
 
 
@@ -84,54 +202,31 @@
         return $result;
     }
 
-    // login existing user
-    function login($conn,$email)
-    {
-        $sql = "SELECT email, password FROM users WHERE email = :email";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['email'=>$email]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row;
-    }
 
-    // retreiving current users detatil
-    function currentUser($conn,$email)
-    {
-        $sql = "SELECT * FROM users WHERE email = :email";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['email'=>$email]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row;
-    }
 
-    // forgot password
-    function forgot_password($conn,$token,$email)
+    
+    function searchScam($conn,$searchBy,$searchScam,$searchType)
     {
-        $sql='UPDATE users SET token = :token WHERE email = :email';
+        $sql = "SELECT scam_exp,scammer_report,date,storyToken FROM sharestory 
+        WHERE scam_exp LIKE ':searchBy' OR scammer_report LIKE ':searchScam' OR scammer_contact LIKE ':searchType'
+              OR scammer_other_info LIKE ':searchType' OR scammer_email LIKE ':searchType'";
         $stmt = $conn->prepare($sql);
-        $stmt->execute(['token'=>$token,'email'=>$email]);
-        return true;
-    }
+        $stmt->execute([
+            'searchBy'          =>"%".$searchBy."%",
+            'searchScam'        =>"%".$searchScam."%",
+            'searchType'        =>"%".$searchType."%"
 
-    //reset password
-    function resetPassword($conn,$email,$token)
-    {
-        $sql = "SELECT id FROM users WHERE email =:email AND token =:token AND token !=''";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['email'=>$email,'token'=>$token]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row;
-    }
-
-    // Update Password
-    function updatePassword($conn,$pass,$email)
-    {
-        $sql = 'UPDATE users SET token="", password=:pass WHERE email=:email';
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['pass'=>$pass,'email'=>$email]);
-        return true;
+        ]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     
     }
+
+    
+
+
+
+
     function afterVerify($conn,$email)
     {
         $sql = 'UPDATE users SET token="" WHERE email=:email';
@@ -155,11 +250,11 @@
         $allowed    =   array('jpg','jpeg','png');
         if(in_array($fileActualExt,$allowed)){
             if($fileError === 0){
-                if($fileSize > 1000000){
+                if($fileSize < 6234061){
                     $fileDestination = $_newDir;
                     if($fileDestination){
                       move_uploaded_file($fileTempName,$fileDestination);
-                      return $fileDestination;
+                      return "Successfully Uploaded";
                     }else{
                         return "pic not uploaded";
                       }
@@ -170,8 +265,71 @@
                 return "An error has occured, try again with another file";
             }
         }else{
-            return "Note: File was not changed";
+            return "Note: File not supported";
         }
     }
     
+
+
+    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    function generate_string($input, $strength = 16) {
+        $input_length = strlen($input);
+        $random_string = '';
+        for($i = 0; $i < $strength; $i++) {
+            $random_character = $input[mt_rand(0, $input_length - 1)];
+            $random_string .= $random_character;
+        }
+        return $random_string;
+    }
+
+
+
+
+
+
+
+
+
+    // send mail
+
+
+      
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMPT;
+use PHPMailer\PHPMailer\Exception; 
+function MyMailer($subject,$to,$message){
+    require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+    require '../vendor/phpmailer/phpmailer/src/Exception.php';
+    require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+    
+
+    $mail = new PHPMailer();
+    $mail->isSMTP();                                           
+    $mail->Host       = 'smtp.mailtrap.io';                    
+    $mail->SMTPAuth   = true;                                   
+    $mail->Username   = 'b5a94aad8ed3d7';               
+    $mail->Password   = '02e31b9e82633e';                              
+    $mail->Port       = 587;                                   
+    
+
+    $mail->SMPTSecure = 'tls';  
+
+    $mail->setFrom('stephanyemmitty@gmail.com', 'Stephen Olayemi');
+    $mail->addAddress($to);
+    $mail->addReplyTo('stephanyemmitty@gmail.com');
+
+    
+    $mail->isHTML(true);
+    $mail->Subject = $subject;
+    $mail->Body    = $message;
+    
+    if($mail->send()){
+        echo 'Message has been sent';
+
+    } else{
+        echo  "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+
+}
+
 ?>

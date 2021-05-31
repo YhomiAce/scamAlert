@@ -1,9 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
-
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -428,72 +426,35 @@ If you have encountered such a scam, report the fraudulent profile to WeChat via
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'credit-for-sex-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">06 May 2021</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-06May2021052959AM.html">I almost fell prey to a Credit-for-Sex scam</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">1) Was using a dating app with purple coloured logo, intro by my friend. At first there's this girl who is keen to BEFRIEND me and asked for my number, and i gave her. 2) weeks later after we chat through&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">10 Mar 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-10Mar2021061022AM.html">I fell prey to Credit-for-Sex scam</a>
-                            </h4>
-                            <p class="card-text">I got tempted by a online ad on locanto with the girl offering services for 200 for 3 hours. i then Proceeded to find the girl on line and made an appointment with her. she made sure to check on line&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">25 Nov 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-25Nov2020035502AM.html">I was threatened to give more money to scammer!</a>
-                            </h4>
-                            <p class="card-text">The lustful me got tempted by a escort post on locanto and I contacted the escorted for a 100 dollar per hour service. However when I reach the meeting place the escort want the payment to be made in&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">14 Sep 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-14Sep2020180355PM.html">Don't fall prey to Credit-for-Sex scams!</a>
-                            </h4>
-                            <p class="card-text">Found a girl who provides services. Was told to meet at the location, upon arrival, she said her friend would contact me. A guy name Ah Pao contacted me and said that singapore police uses cash tactics&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">17 Aug 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-17Aug2020213120PM.html">Scammers will try to show concern first to reel you in!</a>
-                            </h4>
-                            <p class="card-text">Nothing new, they Will try to being nice n win your trust. Will texting you every morning and niGht, showing her concern towards you. After gaining your trust, she will start to ask you to help her by&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">17 Aug 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-17Aug2020212037PM.html">Scammer of Credit-for-Sex scam harassed me when I refused to make payments!</a>
-                            </h4>
-                            <p class="card-text">Same like the rest. Approached by a taiwan girl on michat. Said give services. Name was xiaoya. Tel no 8817118? Then went to designated meet place. Girl said boss will call. Boss "Ah kun" did call. Then&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

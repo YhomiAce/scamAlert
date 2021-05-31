@@ -1,4 +1,6 @@
-<?php include('headerN-scam.php') ?>
+<?php 
+    require_once 'headerN-scam.php';
+?>
 
 
 
@@ -593,4 +595,6 @@
 
 
 
- <?php include('footerN-scam.php') ?>
+ <?php 
+ require_once 'footerN-scam.php';
+?>

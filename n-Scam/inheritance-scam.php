@@ -1,6 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -442,72 +443,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'inheritance-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">27 May 2020</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/don%27t-respond-to-unsolicited-emails-offering-money.html">Don't respond to unsolicited emails offering money</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">At 2.08pm on 26 May 2020 Tuesday, I received an email to my personal email (Junk folder) with my full name in the subject title. I opened it and read the entire email as it had all my details. I was&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">24 Mar 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-24Mar2020112902AM.html">Beware of Inheritance Scam!</a>
-                            </h4>
-                            <p class="card-text">I have just received a fax saying that the person, edith hans-adam from leichtenstein, will be dying any moment and has an inheritance valued at $24,150,000 in his family vault. He wants me to be his&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">02 Jun 2019</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/i-received-an-inheritance-scam-letter-through-fax%21.html">I received an Inheritance Scam letter through fax!</a>
-                            </h4>
-                            <p class="card-text">I received a fax from a Keith Oliver stating that I was eligible to receive the death benefit payout of his late client. According to him, his late client had died without a surviving relative. Due to&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">10 Apr 2019</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/inheritance-scam-email.html">An example of Inheritance Scam email</a>
-                            </h4>
-                            <p class="card-text">Inheritance Scam email: From Mr. Ben Adams Branch Manager Standard Chartered Bank Takoradi Ghana. Dear Friend Business Proposal For You I anticipate that you will read this mail quickly and let me know&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">28 Aug 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-28Aug2018114311AM.html">Just received a pre-recorded phone message on my handphone  on 28 Aug,Morning  saying I have a case with the high court which is unresolved</a>
-                            </h4>
-                            <p class="card-text">Just received a pre-recorded phone message on my handphone on 28 Aug,Morning saying I have a case with the high court which is unresolved. Call time 11.25am...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">22 Jun 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-22Jun2018093754AM.html">I got a call from 8713 9439 this morning - and I picked up cos it was a local number, thinking it could be one of the vendors that I work with</a>
-                            </h4>
-                            <p class="card-text">I got a call from 8713 9439 this morning - and I picked up cos it was a local number, thinking it could be one of the vendors that I work with. But upon answering, I realised it was a robocall, telling&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

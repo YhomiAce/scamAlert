@@ -1,11 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
-
-
-
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -422,72 +418,35 @@
         <img src="../default-album/evidence/loading.gif"/>
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'home-room-rental-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">09 Feb 2021</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-09Feb2021222128PM.html">Beware of home rental scams</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">I reCeived an Email asking about The room Rental details and AVAILABILITY. After i forward My whatsapp for communication, she wrote me the email with tan Mui Joo Ic. Great reading from you again. I would&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">08 Feb 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-08Feb2021114724AM.html">Beware of home rental scams!</a>
-                            </h4>
-                            <p class="card-text">On 1st Feb, 2021, A lady by the name of CHEN ZHIHONG responded to my condo for rental ad in Gumtree. She told me to contact her at her gmail address = <a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="c1bba9a8f9f0f6f9f981a6aca0a8adefa2aeacef">[email&#160;protected]</a> I replied her asking for her&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">08 Dec 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-08Dec2020004548AM.html">Beware of Home Rental scams!</a>
-                            </h4>
-                            <p class="card-text">Posted an advertisement for room Rental online and received an email from yeo siew lian, A SINGAPOREAN WORKING IN TURKEY WHO WILL BE COMING BACK TO SINGAPORE ON JANUARY 5TH AND needed a room.   ————-&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">15 Aug 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-15Aug2020164633PM.html">Potential tenant sounded suspicious!</a>
-                            </h4>
-                            <p class="card-text">I put up an ADVERTISEMENT In Rentinsingapore.com and received an UNSolicited email from Yeo siew Lian within the next few days. Email from scammer as below: “Hello, It is so good to read back from you.&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">15 Jul 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-15Jul2020222224PM.html">Don't fall prey to Home Rental scam</a>
-                            </h4>
-                            <p class="card-text">Hi I received a whats app from someone called Zu Lan. She wanted my email rather than phone. Sounded odd but I gave it. I received the following message which sounded odd so i looked online and found&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">13 Apr 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-13Apr2020174019PM.html">Beware of Home Rental scam!</a>
-                            </h4>
-                            <p class="card-text">A 'prospect tenant' named Zhu Lan contacted me on gumtree, Saying she a sg PR returning from overseas. In the initial email, the person send me 'her' ic S80779??G which at first seems like a sincere person&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

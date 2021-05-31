@@ -1,9 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
-
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -411,72 +409,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'money-mule-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">18 Apr 2021</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-18Apr2021140057PM.html">My bank account got frozen when I took a job that required me to transfer money to other bank accounts</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">First connect them through fb (her name is Janet yeoh), who claimed that her company needed an account admin. They asked me to provide my bank account details  in order to credit my salary to me.  Next,&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">05 Feb 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-05Feb2021183235PM.html">I fell prey to Job scam</a>
-                            </h4>
-                            <p class="card-text">I came across this part time job listing on carousell Offering a part time position to handle Send some mails To the addresses he will provide. He even asked if i was staying near the post office. Why&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">30 Oct 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-30Oct2020213207PM.html">My bank account got frozen!</a>
-                            </h4>
-                            <p class="card-text">I was contacted by a friend's friend SAYING he wants to buy bitcoin. He transferred money to my bank account and I'd buy bitcoin and send to him. After 2-3 days, my bank account was frozen and I panicked&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">21 Jul 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-21Jul2020003511AM.html">Don't allow others to use your bank account!</a>
-                            </h4>
-                            <p class="card-text">I got to know this guy because he DM me on Instagram. We talked from march 2020 until early July. He always talked about love and tell me that he is Korean  who was currently staying in America. He had&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">13 Jun 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-13Jun2020165102PM.html">Beware of jobs that require you to use your own personal bank account to receive money from unknown sources</a>
-                            </h4>
-                            <p class="card-text">I was looking for a part time job and I came across their listing to be a part time cashier personal assistance from home. my job was to receive funds from sales rep and keep records. it didn't suspect&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">12 Jun 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-12Jun2020182342PM.html">Don't allow others to use your bank account to carry out transactions</a>
-                            </h4>
-                            <p class="card-text">two weeks ago i was looking for a job online and i came across this job listing "Home based Personal Assistant" so I whatsapp the number on the listing. The guy told me that the job scope was to receive&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

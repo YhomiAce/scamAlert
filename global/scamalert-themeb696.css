@@ -1177,7 +1177,7 @@ body .eupopup-style-compact .eupopup-button {
 .latest-highlights-container {
   padding-top: 30px;
   padding-bottom: 320px;
-  background-image:url(default-source/default-album/bgd-latest-highlights.png);
+  background-image:url(../default-album/bgd-latest-highlights.png);
   background-position-x:right;
   background-position-y:bottom;
   background-repeat:no-repeat;
@@ -1232,7 +1232,7 @@ body .eupopup-style-compact .eupopup-button {
 	.latest-highlights-container {
 	  padding-top: 120px;
 	  padding-bottom:120px;
-	  background:url(default-album/bgd-latest-highlights.png) no-repeat right bottom;
+	  background:url(../default-album/bgd-latest-highlights.png) no-repeat right bottom;
 	  background-color:#f5f5f5;
 	}
 }
@@ -1285,12 +1285,12 @@ body .eupopup-style-compact .eupopup-button {
 .icon-scamshield {
 	width: 100px;
 	height: 100px;
-	background-image: url('default-album/scamshield-logo062f.png?sfvrsn=763686e0_2');
+	background-image: url('../default-album/scamshield-logo062f.png?sfvrsn=763686e0_2');
 	background-size: cover;
 	border-radius: 20px;
 }
 .scam-encounter {
-  background: url(default-album/bgd-scam-encounter.jpg) no-repeat center center;
+  background: url(../default-album/bgd-scam-encounter.jpg) no-repeat center center;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -1423,120 +1423,120 @@ body .eupopup-style-compact .eupopup-button {
     transition: background-image 2.8s ease;
 }
 .scam .apple {
-  background-image: url( default-album/icons/types/apple.png)}
+  background-image: url(../default-album/icons/types/apple.png)}
 .scam .apple:hover,
 .scam .apple:focus {
-  background-image: url( default-album/icons/types/apple-in.png)}
+  background-image: url(../default-album/icons/types/apple-in.png)}
 
 .scam .car-rental {
-  background-image: url( default-album/icons/types/car-rental.png)}
+  background-image: url(../default-album/icons/types/car-rental.png)}
 .scam .car-rental:hover {
-  background-image: url( default-album/icons/types/car-rental-in.png)}
+  background-image: url(../default-album/icons/types/car-rental-in.png)}
 
 .scam .cold-call-supplier {
-  background-image: url( default-album/icons/types/cold-call-supplier.png)}
+  background-image: url(../default-album/icons/types/cold-call-supplier.png)}
 .scam .cold-call-supplier:hover {
-  background-image: url( default-album/icons/types/cold-call-supplier-in.png)}
+  background-image: url(../default-album/icons/types/cold-call-supplier-in.png)}
 
 .scam .credit-for-sex {
-  background-image: url( default-album/icons/types/credit-for-sex.png)}
+  background-image: url(../default-album/icons/types/credit-for-sex.png)}
 .scam .credit-for-sex:hover {
-  background-image: url( default-album/icons/types/credit-for-sex-in.png)}
+  background-image: url(../default-album/icons/types/credit-for-sex-in.png)}
 
 .scam .cyber-extortion {
-  background-image: url( default-album/icons/types/cyber-extortion.png)}
+  background-image: url(../default-album/icons/types/cyber-extortion.png)}
 .scam .cyber-extortion:hover {
-  background-image: url( default-album/icons/types/cyber-extortion-in.png)}
+  background-image: url(../default-album/icons/types/cyber-extortion-in.png)}
 
 .scam .home-room-rental {
-  background-image: url( default-album/icons/types/home-room-rental.png)}
+  background-image: url(../default-album/icons/types/home-room-rental.png)}
 .scam .home-room-rental:hover {
-  background-image: url( default-album/icons/types/home-room-rental-in.png)}
+  background-image: url(../default-album/icons/types/home-room-rental-in.png)}
 
 .scam .impersonation {
-  background-image: url( default-album/icons/types/impersonation.png)}
+  background-image: url(../default-album/icons/types/impersonation.png)}
 .scam .impersonation:hover {
   background-image: url( default-album/icons/types/impersonation-in.png)}
 
 .scam .inheritance {
-  background-image: url( default-album/icons/types/inheritance.png)}
+  background-image: url(../default-album/icons/types/inheritance.png)}
 .scam .inheritance:hover {
-  background-image: url( default-album/icons/types/inheritance-in.png)}
+  background-image: url(../default-album/icons/types/inheritance-in.png)}
 
 .scam .internet-love {
-  background-image: url( default-album/icons/types/internet-love.png)}
+  background-image: url(../default-album/icons/types/internet-love.png)}
 .scam .internet-love:hover {
-  background-image: url( default-album/icons/types/internet-love-in.png)}
+  background-image: url(../default-album/icons/types/internet-love-in.png)}
 
 .scam .investment {
-  background-image: url( default-album/icons/types/investment.png)}
+  background-image: url(../default-album/icons/types/investment.png)}
 .scam .investment:hover {
-  background-image: url( default-album/icons/types/investment-in.png)}
+  background-image: url(../default-album/icons/types/investment-in.png)}
 
 .scam .job {
-  background-image: url( default-album/icons/types/job.png)}
+  background-image: url(../default-album/icons/types/job.png)}
 .scam .job:hover {
-  background-image: url( default-album/icons/types/job-in.png)}
+  background-image: url(../default-album/icons/types/job-in.png)}
 
 .scam .kidnap {
-  background-image: url( default-album/icons/types/kidnap.png)}
+  background-image: url(../default-album/icons/types/kidnap.png)}
 .scam .kidnap:hover {
-  background-image: url( default-album/icons/types/kidnap-in.png)}
+  background-image: url(../default-album/icons/types/kidnap-in.png)}
 
 .scam .social-media {
-  background-image: url( default-album/icons/types/social-media.png)}
+  background-image: url(../default-album/icons/types/social-media.png)}
 .scam .social-media:hover {
-  background-image: url( default-album/icons/types/social-media-in.png)}
+  background-image: url(../default-album/icons/types/social-media-in.png)}
 
 .scam .lottery {
-  background-image: url( default-album/icons/types/lottery.png)}
+  background-image: url(../default-album/icons/types/lottery.png)}
 .scam .lottery:hover {
-  background-image: url( default-album/icons/types/lottery-in.png)}
+  background-image: url(../default-album/icons/types/lottery-in.png)}
 
 .scam .money-value {
-  background-image: url( default-album/icons/types/money-value.png)}
+  background-image: url(../default-album/icons/types/money-value.png)}
 .scam .money-value:hover {
-  background-image: url( default-album/icons/types/money-value-in.png)}
+  background-image: url(../default-album/icons/types/money-value-in.png)}
 
 .scam .online-purchase {
-  background-image: url( default-album/icons/types/online-purchase.png)}
+  background-image: url(../default-album/icons/types/online-purchase.png)}
 .scam .online-purchase:hover {
-  background-image: url( default-album/icons/types/online-purchase-in.png)}
+  background-image: url(../default-album/icons/types/online-purchase-in.png)}
 
 .scam .online-travel-vacation {
-  background-image: url( default-album/icons/types/online-travel-vacation.png)}
+  background-image: url(../default-album/icons/types/online-travel-vacation.png)}
 .scam .online-travel-vacation:hover {
-  background-image: url( default-album/icons/types/online-travel-vacation-in.png)}
+  background-image: url(../default-album/icons/types/online-travel-vacation-in.png)}
 
 .scam .paypal-email {
-  background-image: url( default-album/icons/types/paypal-email.png)}
+  background-image: url(../default-album/icons/types/paypal-email.png)}
 .scam .paypal-email:hover {
-  background-image: url( default-album/icons/types/paypal-email-in.png)}
+  background-image: url(../default-album/icons/types/paypal-email-in.png)}
 
 .scam .phishing {
-  background-image: url( default-album/icons/types/phishing.png)}
+  background-image: url(../default-album/icons/types/phishing.png)}
 .scam .phishing:hover {
-  background-image: url( default-album/icons/types/phishing-in.png)}
+  background-image: url(../default-album/icons/types/phishing-in.png)}
 
 .scam .software-upgrade {
-  background-image: url( default-album/icons/types/software-upgrade.png)}
+  background-image: url(../default-album/icons/types/software-upgrade.png)}
 .scam .software-upgrade:hover {
-  background-image: url( default-album/icons/types/software-upgrade-in.png)}
+  background-image: url(../default-album/icons/types/software-upgrade-in.png)}
 
 .scam .spoofed-hacked-email {
-  background-image: url( default-album/icons/types/spoofed-hacked-email.png)}
+  background-image: url(../default-album/icons/types/spoofed-hacked-email.png)}
 .scam .spoofed-hacked-email:hover {
-  background-image: url( default-album/icons/types/spoofed-hacked-email-in.png)}
+  background-image: url(../default-album/icons/types/spoofed-hacked-email-in.png)}
 
 .scam .wangiri {
-  background-image: url( default-album/icons/types/wangiri.png)}
+  background-image: url(../default-album/icons/types/wangiri.png)}
 .scam .wangiri:hover {
-  background-image: url( default-album/icons/types/wangiri-in.png)}
+  background-image: url(../default-album/icons/types/wangiri-in.png)}
 
 .scam .loan {
-  background-image: url( default-album/icons/types/loan.png)}
+  background-image: url(../default-album/icons/types/loan.png)}
 .scam .loan:hover {
-  background-image: url( default-album/icons/types/loan-in.png)}
+  background-image: url(../default-album/icons/types/loan-in.png)}
 /* end of Types of Scams */
 
 /* Scam details */
@@ -2036,7 +2036,7 @@ body .eupopup-style-compact .eupopup-button {
 /* Search Page */
 .search-container {
   padding:30px 0;
-  background:url(' default-album/bgd-search.jpg') no-repeat bottom center;
+  background:url('../default-album/bgd-search.jpg') no-repeat bottom center;
   background-attachment: fixed;
   background-size: cover;
   color: #fff;
@@ -2158,7 +2158,7 @@ body .eupopup-style-compact .eupopup-button {
 
 /* Fight Scams */
 .jumbotron.fightScams {
-	background-image:url(' default-album/quiz/lets-fight-scams-banner23bc.jpg?sfvrsn=56598e9d_2');
+	background-image:url('../default-album/quiz/lets-fight-scams-banner23bc.jpg?sfvrsn=56598e9d_2');
 	background-position-y:center;
 	background-position-x: right;
 	padding: 520px 0;
@@ -2167,7 +2167,7 @@ body .eupopup-style-compact .eupopup-button {
 }
 @media (max-width:720px) {
 	.jumbotron.fightScams {
-		background-image:url(../../../../../../../scamalert.sg/images/default-source/default-album/quiz/lets-fight-scams-mobile-bannere653.jpg?sfvrsn=7875ea8a_2);
+		background-image:url(../default-album/quiz/lets-fight-scams-mobile-bannere653.jpg?sfvrsn=7875ea8a_2);
 		background-position-y:center;
 		background-position-x: center;
 		padding: 340px 0;

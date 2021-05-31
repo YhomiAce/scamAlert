@@ -1,5 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 <main role="main"> 
@@ -412,72 +414,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'online-purchase-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">25 Mar 2021</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-25Mar2021175749PM.html">Transact within the online marketing platform</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">They are listed as a seller on Lazada. They were offering PS5 at a cheap price. After i made the payment on Lazada the seller asked for additional $200 as insurance and vat. they said the money will be&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">02 Feb 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-02Feb2021202344PM.html">Beware of fraudulent sellers online</a>
-                            </h4>
-                            <p class="card-text">@trustdeals4_you - this person listed a bunch of apple products at a super low price. Like, he listed the M1 Macbook air for $500 on shopee. He encourages people to contact him on telegram (same username,&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">11 Jan 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/do-your-research-first-before-dealing-with-an-online-retailer.html">Do your research first before dealing with an online retailer</a>
-                            </h4>
-                            <p class="card-text">I was a victim of online fraud. This month, I ordered 3 sets of  branded grinder(Total $72) from Snoufu?(mall.snoufu?.com < http://mall.snoufu?.com/ > ) but got 3 plain steel bowls. This company is so&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">03 Jan 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-03Jan2021215957PM.html">Seller went missing after I requested for a refund for my PS5 purchase</a>
-                            </h4>
-                            <p class="card-text">I saw a ps5 selling on shopee and i contacted the person through whatsapp. The price was not even considered low, it was just $30-40 cheaper than retail price. It has all these info on a website, Instagram&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">24 Nov 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-24Nov2020233727PM.html">Scammer insisted that we passed our phone to the courier person</a>
-                            </h4>
-                            <p class="card-text">I posted in gumtree to sell my. iphone se. Scammer contacted ME at 4pm said he want to buy it for his daughter. He is in USA but daughter is in Malaysia. He will arrange for fedex courier to pickup the&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">03 Oct 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-03Oct2020145257PM.html">Shop within the platform and do not do a direct bank transfer </a>
-                            </h4>
-                            <p class="card-text">At around 11:30 on 2 October 2020 I saw an ad on shopee for a laptop going at $550 so I went to pm the seller and ask if it still available. And got a response in a few mins saying yes so I text them&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

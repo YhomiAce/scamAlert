@@ -1,17 +1,19 @@
 <?php
     session_start();
+    require 'vendor/autoload.php';
     require_once "actions.php";
     require_once "db.php";
+    
+    
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
+  
 
-    // Load Composer's autoloader
-    require 'vendor/autoload.php';
+// MyMailer('this','stephanyemmitty@gmail.com','i love YOU');
 
-    // enrolling for subscription
-    $mail = new PHPMailer(true);
+
+
+
+
 
     if(isset($_POST['action']) && $_POST['action'] === 'Join The Fight!'){
         print_r($_POST['name']);
@@ -46,17 +48,53 @@
         $money_lost         = testInput($_POST['money_lost']);
         $policeReport       = testInput($_POST['policeReport']);
         $scam_exp           = testInput($_POST['scam_exp']);
-        $file1              = testInput($_POST['file1']);
-        $file2              = testInput($_POST['file2']);
+        $file1              = testInput($_FILES['file1']['name']);
+        $file2              = testInput($_FILES['file2']['name']);
+        $file1_size         = testInput($_FILES['file1']['size']);
+        $file2_size         = testInput($_FILES['file2']['size']);
         $anonymous          = testInput($_POST['anonymous']);
+        $token              = "story-".generate_string($permitted_chars,15);
         
+        if(scamExist($conn,$scam_exp) != "Null"){ 
+            if($file1_size < 6234061 && $file2_size < 6234061)
+            echo displayMessage('danger',uploadPicture('file1','sharedImages/'.$file1)." ( File1 )");
+            echo displayMessage('danger',uploadPicture('file2','sharedImages/'.$file2)." ( File2 )");
 
-        // uploadPicture('file1','sharedImages/'.$file1);
-        if(scamExist($conn,$scam_exp) == Null){
-            if($firstname != "" || $lastname != ""){
+            if($firstname != "" && $lastname != ""){
                 $register = share($conn,$firstname,$lastname,$email,$phone,$first_scam,$scammer_report,$scammer_username,$scammer_contact,
                 $scammer_email,$scammer_other_info,
-                $money_lost,$policeReport,$scam_exp,$file1,$file2,$anonymous);
+                $money_lost,$policeReport,$scam_exp,$file1,$file2,$anonymous,$token);
+
+
+                $content  = "
+						
+						<section style='background-color:#000; padding:10px 25px;color:#fff;'>
+						
+							<div style='border:2px solid red;padding:30px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif';>
+							<h2 style='text-align:center;'>".ucwords(str_replace("-"," ",$scammer_report))."</h2><br>
+							<h4 style='text-align:left; font-size:18px; color:#fff;'>Scammer Details:</h4>
+                            <h5>Name:".$scammer_username."<br>
+                                Email:".$scammer_email."<br>
+                                Phone:".$scammer_contact."<br>
+                                Also:(".$scammer_other_info.")<br>
+                            </h5>
+								<h5 style='font-size:15px;font-weight: normal;color:#fff'>
+                                        ".$scam_exp."<br><br><br><br><br>
+									<a style='background-color:red;color:#fff;font-decoration:none; padding:12px 18px; border-radius:6px' href='#'>ScamAlert</a><br><br><br><br<br>
+									</h5><br<br>
+								</h5>
+								<h3 style='border-bottom:3px solid #fff;width:100px'><br>Regrads from ScamAlert</h2>
+							</div>
+						</section>
+								";
+
+
+
+                $allEmails = fetchAllEmail($conn);
+                foreach($allEmails as $allEmail){
+                    MyMailer('ScamAlert',$allEmail,$content);
+                }
+                
             }else{
                 echo displayMessage('danger','Every field must be filled');
             }
@@ -65,66 +103,24 @@
         }
             
     }
-    // handle login
-    if(isset($_POST['action']) && $_POST['action'] === 'login'){
-        print_r($_POST);
-        $email = testInput(($_POST['username']));
-        $pass = testInput(($_POST['login-password']));
+    
 
-        $loggedInUser = login($conn,$email);
-        if($loggedInUser != null){
-            if(password_verify($pass,$loggedInUser['password'])){
-                if(!empty($_POST['rem'])){
-                    setcookie('email',$email,time()+(30*24*60*60),'/');
-                    setcookie('password',$pass,time()+(30*24*60*60),'/');
-                }else{
-                    setcookie('email','',1,'/');
-                    setcookie('password','',1,'/');
-                }
-                echo 'login';
-                $_SESSION['user'] = $email;
-            }else{
-                echo displayMessage('danger','Password is incorrect');
-            }
+
+
+    if(isset($_POST['action']) && $_POST['action'] === 'Search'){
+        $searchScam     = testInput($_POST['searchScam']);
+        $searchBy       = testInput($_POST['searchBy']);
+        $searchType     = testInput($_POST['searchType']);
+        if($searchBy != "" || $searchScam != "" || $searchType != ""){
+            $searchScam = searchScam($conn,$searchBy,$searchScam,$searchType);
         }else{
-            echo displayMessage('danger','User not found!');
+            echo displayMessage('danger','Every field must be filled');
         }
+        
     }
+    
 
-    // forgot password
-    if(isset($_POST['action']) && $_POST['action'] === 'forgot'){
-        $email = $user->testInput($_POST['email']);
-        $userFound = $user->currentUser($email);
-        // if($userFound != null){
-        //     $token =uniqid();
-        //     $token = str_shuffle($token);
-        //     $user->forgot_password($token,$email);
-        //     // try{
-        //     //     $mail->isSMTP();
-        //     //     $mail->Host = 'smtp.gmail.com';
-        //     //     $mail->SMTPAuth = true;
-        //     //     $mail->Username   = Database::USERNAME;                    
-        //     //     $mail->Password   = Database::PASSWORD;                              
-        //     //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
-        //     //     $mail->Port       = 587;
+    
 
-        //     //     $mail->setFrom(Database::USERNAME,'Xpress Website');
-        //     //     $mail->addAddress($email);
-
-        //     //     $mail->isHTML(true);
-        //     //     $mail->Subject = 'Reset Password';
-        //     //     $mail->Body = '<h3>Click the link below to reset your password. <br>
-        //     //         <a href="http://localhost/Work%20Folder/particle/reset-pass.php?email='.$email.'&token='.$token.'">Click here to Reset Password</a>
-        //     //         <br>Regards<br>Xpress Website</h3>';
-        //     //     $mail->send();
-        //     //     echo $user->displayMessage('success','A resest link has been sent to your email!');
-
-        //     // }catch(Exception $e){
-        //     //     echo $user->displayMessage('danger','Oops something went wrong! please try again');
-        //     // }
-        // }else{
-        //     echo $user->displayMessage('warning','This Email is not registered!');
-        // }
-    }
 
 ?>

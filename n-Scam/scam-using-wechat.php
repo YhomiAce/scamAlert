@@ -1,6 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -412,17 +413,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'scam-using-wechat');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">22 Nov 2018</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-22Nov2018141012PM.html">He requested me to borrow him ￥20000, I lent 6000.  Deleted me from Wechat and didn't pay me back</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">Met eugene yeo(jiedong yeo) from okcupid.com. I know him for half an year. So when he said he didn't bring enough ￥ in cku competiton , and the dog show can't accept credit card to pay, then requested&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

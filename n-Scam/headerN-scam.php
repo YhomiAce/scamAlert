@@ -1,3 +1,18 @@
+<?php  
+    include('../config/controller.php');
+    $OddfetchTypeOfScam = fetchTypeOfScam($conn);
+    
+    $fetchTypeOfScam    =    array();
+
+    foreach($OddfetchTypeOfScam as $fetchType){
+        if(!in_array($fetchType,$fetchTypeOfScam)){
+            $fetchTypeOfScam[]=$fetchType;
+        }
+    }
+
+    sort($fetchTypeOfScam);
+?>
+
 <!DOCTYPE html>
 <html lang="en"> 
     <head>     
@@ -32,16 +47,15 @@
 	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="1FEFFD71" />
 </div><script type="text/javascript">
 Sys.WebForms.PageRequestManager._initialize('ctl00$ctl05', 'aspnetForm', [], [], [], 90, 'ctl00');
-//]]>
+
 </script>
 <input type="hidden" name="ctl00$ctl05" id="ctl05" />
 <script type="text/javascript">
-//<![CDATA[
-Sys.Application.setServerId("ctl05", "ctl00$ctl05");
-Sys.Application._enableHistoryInScriptManager();
-//]]>
+    Sys.Application.setServerId("ctl05", "ctl00$ctl05");
+    Sys.Application._enableHistoryInScriptManager();
 </script>
- <!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWLGTB9"
+
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWLGTB9"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) -->  <header> 
 
 
@@ -75,30 +89,14 @@ Sys.Application._enableHistoryInScriptManager();
                                 </li>
                                 <li class="col-sm-9 d-none d-sm-block">
                                     <ul>
-                                        <li><a href="../n-Scam/apple-scam.php">Apple Scam</a></li>
-                                        <li><a href="../n-Scam/car-rental-scam.php">Car Rental Scam</a></li>
-                                        <li><a href="../n-Scam/cold-call-supplier-scam.php">Cold Call Supplier Scam</a></li>
-                                        <li><a href="../n-Scam/credit-for-sex-scam.php">Credit-for-Sex Scam</a></li>
-                                        <li><a href="../n-Scam/cyber-extortion-scam.php">Cyber Extortion Scam</a></li>
-                                        <li><a href="../n-Scam/home-room-rental-scam.php">Home/Room Rental Scam</a></li>
-                                        <li><a href="../n-Scam/impersonation-scam.php">Impersonation Scam</a></li>
-                                        <li><a href="../n-Scam/inheritance-scam.php">Inheritance Scam</a></li>
-                                        <li><a href="../n-Scam/internet-love-scam.php">Internet Love Scam</a></li>
-                                        <li><a href="../n-Scam/investment-scam.php">Investment Scam</a></li>
-                                        <li><a href="../n-Scam/job-scam.php">Job Scam</a></li>
-                                        <li><a href="../n-Scam/kidnap-scam.php">Kidnap Scam</a></li>
-                                        <li><a href="../n-Scam/loan-scam.php">Loan Scam</a></li>
-                                        <li><a href="../n-Scam/lottery-scam.php">Lottery Scam</a></li>
-                                        <li><a href="../n-Scam/money-mule-scam.php">Money Mule Scam</a></li>
-                                        <li><a href="../n-Scam/online-purchase-scam.php">Online Purchase Scam</a></li>
-                                        <li><a href="../n-Scam/online-travel-vacation-scam.php">Online Travel Vacation Scam</a></li>
-                                        <li><a href="../n-Scam/paypal-email-scam.php">PayPal Email Scam</a></li>
-                                        <li><a href="../n-Scam/phishing-scam.php">Phishing Scam</a></li>
-                                        <li><a href="../n-Scam/scam-using-wechat.php">Scam Using WeChat</a></li>
-                                        <li><a href="../n-Scam/social-media-whatsapp-scam.php">Social Media Impersonation / Whatsapp Takeover Scam</a></li>
-                                        <li><a href="../n-Scam/software-update-scam.php">Software Update Scam</a></li>
-                                        <li><a href="../n-Scam/spoofed-hacked-email-scam.php">Spoofed/Hacked Email Scam</a></li>
-                                        <li><a href="../n-Scam/wangiri-scam.php">Wangiri Scam</a></li>
+                                        <?php
+                                            foreach($fetchTypeOfScam as $typeofScam){
+                                        ?>
+                                            <li><a href="../n-Scam/<?php echo $typeofScam ?>.php"><?php  echo ucwords(str_replace("-"," ",$typeofScam)) ?></a></li>
+
+                                        <?php
+                                            }
+                                        ?>
                                     </ul>
                                 </li>
                             </div>

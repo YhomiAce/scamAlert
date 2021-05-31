@@ -1,5 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -454,72 +456,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'investment-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">31 Mar 2021</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-31Mar2021214559PM.html">Online "friend" kept asking me to invest in crypto</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">i met this chinese guy at CMB named dunn, Chinese name : deng bo hong. chatted abit on the app before moving to whatsapp. he appeared as an owner of 2 transportation companies in johor and sg. he will&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">30 Mar 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-30Mar2021160824PM.html">Beware of fake profiles online</a>
-                            </h4>
-                            <p class="card-text">I've tried facebook dating app recently and has actually met quite a lot of fakes already. But I will share about one guy from China that chat me up and was pleasant. Very fast to profess interest. Claims&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">12 Feb 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-12Feb2021132600PM.html">I lost $33k to investment scam</a>
-                            </h4>
-                            <p class="card-text">I would to share this scam Love story of mine. I have since lose $33,000. Met her via facebook dating and move over to whatsapp after a day of chattng over at facebook dating. Told me she work at fullerton&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">04 Jan 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-04Jan2021224343PM.html">Don't trust blindly!</a>
-                            </h4>
-                            <p class="card-text">I met this guy at okcupid Told me his name is ray(fake name anyway) Asked me my occupation where do I stay (background and financial Check for potential prey) Asked me for number to shift conversation&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">26 Dec 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-26Dec2020225556PM.html">Beware of scammers online!</a>
-                            </h4>
-                            <p class="card-text">I get to know this guy from Cmb. We chatted in WhatsApp for around 3 weeks. Even though we never meet out but he confessed his love for me. I pushed him to meet out( he is in singapore) but he will always&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">18 Dec 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-18Dec2020145327PM.html">New online friend turned out to be a scammer</a>
-                            </h4>
-                            <p class="card-text">Got to know this guy through cmb and thereafter we moved on to whatsapp. Eventually he start to introduce an investment app that you've to install via a 3rd party link which it doesn't look legit. Hence&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

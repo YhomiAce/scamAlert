@@ -1,6 +1,7 @@
-<?php include('./headerN-scam.php') ?>
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -415,72 +416,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'internet-love-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">10 May 2021</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-10May2021190352PM.html">Don't be fooled by your online friend!</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">This happened to my best friend. She does not want to report to the police as she did not lose any money and she feels embarrassed that she fell for a scam. She was on a dating app and chatted with this&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">16 Apr 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-16Apr2021072733AM.html">I was scammed by an online friend</a>
-                            </h4>
-                            <p class="card-text">We met on an online dating app. He took time to convinced me that he was a real deal by having a regular work schedule time to talk only during the so called free time and sending photos of his daily&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">12 Apr 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-12Apr2021105458AM.html">I lost $300k to Internet Love scam</a>
-                            </h4>
-                            <p class="card-text">He FB Messeged me thru social media app and claimed to be china international stationed in euro(in my case germany). He was very persuasive and claimed to be ceo of few compaines. Within days he confessed&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">07 Apr 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-07Apr2021203803PM.html">Beware of scammers online</a>
-                            </h4>
-                            <p class="card-text">I share this story to make all the females out there to be more aware that love scammer needs to be taken seriously. This love scammer is so professionally manipulative. Scammer bio: match on tinder,&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">03 Apr 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-03Apr2021115805AM.html">I lost $16k to Internet Love scam</a>
-                            </h4>
-                            <p class="card-text">Meet him on cmb in Aug 2020 and Things went well for first 3 months. He Has his own business in the wood / construction industry and wishes to expand to asia. He is French with Asian origins. Went to&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">31 Mar 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-31Mar2021214559PM.html">Online "friend" kept asking me to invest in crypto</a>
-                            </h4>
-                            <p class="card-text">i met this chinese guy at CMB named dunn, Chinese name : deng bo hong. chatted abit on the app before moving to whatsapp. he appeared as an owner of 2 transportation companies in johor and sg. he will&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

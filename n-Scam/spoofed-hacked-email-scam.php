@@ -1,8 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -557,72 +556,35 @@ More Cybersecurity Tips:</strong></p>
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'spoofed-hacked-email-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">10 Apr 2020</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-10Apr2020200739PM.html">I received a cyber extortion email asking for $1,900</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">When I logged in into my email on 10/apr/2020, i received an extortion email for $1,900. the scammer claimed that they know my email password, and they have video of me visiting adult website. a failure&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">27 Jan 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-27Jan2020001032AM.html">[New Story] - <span class="__cf_email__" data-cfemail="c5a8a4b7a6b0b6a6adb0a485bca8a4aca9eba6aaa8">[email&#160;protected]</span></a>
-                            </h4>
-                            <p class="card-text">I received an email mentioning that they have deposit /transfer money into my account and asking me to click the link to check the transfer receipt proof. Editor's Note: Please do not click on any links&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">01 Jan 2019</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-01Jan2019012302AM.html">Scammer demanded that I transfer $782 to his Bitcoin account</a>
-                            </h4>
-                            <p class="card-text">The email appeared in my school email's spam folder. I only opened the email a few days after it was sent. The email claimed that an email was sent from my account to myself, therefore the sender has&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">11 Oct 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-11Oct2018201126PM.html">Please be on your alert when someone send you a whatsapp text saying that he wants to buy your used products from gumtree or facebook</a>
-                            </h4>
-                            <p class="card-text">Please be on your alert when someone send you a whatsapp text saying that he wants to buy your used products from gumtree or facebook. He claims that he is interested to buy your used products and negotiate&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">09 Oct 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-09Oct2018131641PM.html">Received an email an hour later after an Invoice came from our supplier to make payment for an order that we placed</a>
-                            </h4>
-                            <p class="card-text">Received an email an hour later after an Invoice came from our supplier to make payment for an order that we placed. We then received another copy of the invoice this time with the banking information&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">05 Sep 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-05Sep2018145523PM.html">Accidentally confirmed a FB guy, name Wesley Lee</a>
-                            </h4>
-                            <p class="card-text">Accidentally confirmed a FB guy, name Wesley Lee. Who knows just know few days, he asked me to help choose gift for his mother n said give me some surprises. Saying that he had paid all the charges n&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

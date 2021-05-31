@@ -1,6 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -434,72 +435,35 @@ To provide any information related to such crimes, please call the Police hotlin
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'kidnap-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">14 Jul 2020</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-14Jul2020153904PM.html">Beware of Kidnap scam message!</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">I received a text message on my phone from a number shown as 9000. it stated as follows, "ws me now 96600596 Matthew! daughter is with me! u better bank in $3000 to ???-981-913 posb sav now! better dun&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">31 May 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-31May2020202037PM.html">Beware of Kidnap Scam message!</a>
-                            </h4>
-                            <p class="card-text">I received an sms on 31 May 2020 around 7:39pm stating that: ur girl is with me! u better bank in $2000 to my ???-983-4971 Standard chart now! bette dun call police!if not i will kill her! 87163571 rayno&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">28 May 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-28May2020193646PM.html">Ignore Kidnap scam message</a>
-                            </h4>
-                            <p class="card-text">Received this text message during cb period, where i and my daughter are all at home. the message read out: ur daughter is with me! u better bank in $2680 to my bank ???-395-1892 uob sav now! better dun&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">01 Jun 2019</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-01Jun2019182510PM.html">Another incident of Kidnap Scam</a>
-                            </h4>
-                            <p class="card-text">I got this kidnap scam sms. It was obvious it was a scam because I'm 16 and have no children. THe sms is as follows "I KIDNAPPED YOUR DAUGHTER/SON , CALL ME NOW BEFORE I KILL HER. DON'T TRY ME. PREPARE&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">01 Jun 2019</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-01Jun2019174832PM.html">I was told my daughter has been kidnapped!</a>
-                            </h4>
-                            <p class="card-text">The scammer claim that my daughter/son has been kidnapped and request for a 10k ransom. the original message is "i kidnapped your daughter/son , call me now before i kill her. don't try me prepare a ransom&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">23 Aug 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-23Aug2018124744PM.html">Why those student who joined singapore idol or some hooligan break into school trying to show what they did to student who got pushed down the building in school</a>
-                            </h4>
-                            <p class="card-text">Why those student who joined singapore idol or some hooligan break into school trying to show what they did to student who got pushed down the building in school. There's few student died in campus. Then&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

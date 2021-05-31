@@ -1,3 +1,18 @@
+<?php  
+    include('../config/controller.php');
+    $OddfetchTypeOfScam = fetchTypeOfScam($conn);
+    
+    $fetchTypeOfScam    =    array();
+
+    foreach($OddfetchTypeOfScam as $fetchType){
+        if(!in_array($fetchType,$fetchTypeOfScam)){
+            $fetchTypeOfScam[]=$fetchType;
+        }
+    }
+
+    sort($fetchTypeOfScam);
+?>
+
 <!DOCTYPE html>
 <html lang="en"> 
     <head>     
@@ -26,23 +41,21 @@
             <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
             <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="wHWV2qTBFhayFOvVTMHBV6n8eELehxpTSscF/LqVsQqpJAJX93+5ZwplbkIUXGB0+BVk+CMczAGp46Mt2tlLbPqJkZ24WhSneRfcw3lCZFk=" />
         </div>
-    </form>
 <script src="../WebResourcea0fb.js?d=pynGkmcFUV13He1Qd6_TZDJszzu2QwqfDD2C0hzUxkhg6T2br6CJYkFbNR15poorWgqcqPiilRPVqKGuCcJ9SQ2&amp;t=637461269481343508" type="text/javascript"></script>
 <script src="../Telerik.Web.UI.WebResource723e.js?_TSM_HiddenField_=ctl05_TSM&amp;compress=0&amp;_TSM_CombinedScripts_=%3b%3bSystem.Web.Extensions%2c+Version%3d4.0.0.0%2c+Culture%3dneutral%2c+PublicKeyToken%3d31bf3856ad364e35%3aen%3af7ba41a4-e843-4f12-b442-8e407f37c316%3aea597d4b%3ab25378d2" type="text/javascript"></script>
 <div class="aspNetHidden">
 	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="1FEFFD71" />
 </div><script type="text/javascript">
 Sys.WebForms.PageRequestManager._initialize('ctl00$ctl05', 'aspnetForm', [], [], [], 90, 'ctl00');
-//]]>
+
 </script>
 <input type="hidden" name="ctl00$ctl05" id="ctl05" />
 <script type="text/javascript">
-//<![CDATA[
-Sys.Application.setServerId("ctl05", "ctl00$ctl05");
-Sys.Application._enableHistoryInScriptManager();
-//]]>
+    Sys.Application.setServerId("ctl05", "ctl00$ctl05");
+    Sys.Application._enableHistoryInScriptManager();
 </script>
- <!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWLGTB9"
+
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWLGTB9"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) -->  <header> 
 
 
@@ -76,30 +89,14 @@ Sys.Application._enableHistoryInScriptManager();
                                 </li>
                                 <li class="col-sm-9 d-none d-sm-block">
                                     <ul>
-                                        <li><a href="../n-Scam/apple-scam.php">Apple Scam</a></li>
-                                        <li><a href="../n-Scam/car-rental-scam.php">Car Rental Scam</a></li>
-                                        <li><a href="../n-Scam/cold-call-supplier-scam.php">Cold Call Supplier Scam</a></li>
-                                        <li><a href="../n-Scam/credit-for-sex-scam.php">Credit-for-Sex Scam</a></li>
-                                        <li><a href="../n-Scam/cyber-extortion-scam.php">Cyber Extortion Scam</a></li>
-                                        <li><a href="../n-Scam/home-room-rental-scam.php">Home/Room Rental Scam</a></li>
-                                        <li><a href="../n-Scam/impersonation-scam.php">Impersonation Scam</a></li>
-                                        <li><a href="../n-Scam/inheritance-scam.php">Inheritance Scam</a></li>
-                                        <li><a href="../n-Scam/internet-love-scam.php">Internet Love Scam</a></li>
-                                        <li><a href="../n-Scam/investment-scam.php">Investment Scam</a></li>
-                                        <li><a href="../n-Scam/job-scam.php">Job Scam</a></li>
-                                        <li><a href="../n-Scam/kidnap-scam.php">Kidnap Scam</a></li>
-                                        <li><a href="../n-Scam/loan-scam.php">Loan Scam</a></li>
-                                        <li><a href="../n-Scam/lottery-scam.php">Lottery Scam</a></li>
-                                        <li><a href="../n-Scam/money-mule-scam.php">Money Mule Scam</a></li>
-                                        <li><a href="../n-Scam/online-purchase-scam.php">Online Purchase Scam</a></li>
-                                        <li><a href="../n-Scam/online-travel-vacation-scam.php">Online Travel Vacation Scam</a></li>
-                                        <li><a href="../n-Scam/paypal-email-scam.php">PayPal Email Scam</a></li>
-                                        <li><a href="../n-Scam/phishing-scam.php">Phishing Scam</a></li>
-                                        <li><a href="../n-Scam/scam-using-wechat.php">Scam Using WeChat</a></li>
-                                        <li><a href="../n-Scam/social-media-whatsapp-scam.php">Social Media Impersonation / Whatsapp Takeover Scam</a></li>
-                                        <li><a href="../n-Scam/software-update-scam.php">Software Update Scam</a></li>
-                                        <li><a href="../n-Scam/spoofed-hacked-email-scam.php">Spoofed/Hacked Email Scam</a></li>
-                                        <li><a href="../n-Scam/wangiri-scam.php">Wangiri Scam</a></li>
+                                        <?php
+                                            foreach($fetchTypeOfScam as $typeofScam){
+                                        ?>
+                                            <li><a href="../n-Scam/<?php echo $typeofScam ?>.php"><?php  echo ucwords(str_replace("-"," ",$typeofScam)) ?></a></li>
+
+                                        <?php
+                                            }
+                                        ?>
                                     </ul>
                                 </li>
                             </div>

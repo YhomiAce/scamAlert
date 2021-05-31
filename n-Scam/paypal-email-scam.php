@@ -1,5 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -389,72 +391,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'paypal-email-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">11 Jun 2020</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-11Jun2020122710PM.html">Sellers can also be scammed, so beware!</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">'Buyer' claimed to be in usa, and wanted to buy my product to be sent to malaysia. He sent me a paypal email showing that payment was made. but on closer scrutiny, i realised it is a fake image....</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">24 Aug 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-24Aug2018105322AM.html">I was logging onto my com to do something, as I have just woken up, when I noticed I got the usual assortment of random emails from website I subscribed to</a>
-                            </h4>
-                            <p class="card-text">I was logging onto my com to do something, as I have just woken up, when I noticed I got the usual assortment of random emails from website I subscribed to. I then notice this weird looking email from&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">19 Aug 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-19Aug2018222149PM.html">I advertised the room for rent at my house and received the Email from Amelia Lee and I got suspicious of the tenant as she keep asking for the paypal account to transfer the 3 months rental oneshot</a>
-                            </h4>
-                            <p class="card-text">I advertised the room for rent at my house and received the Email from Amelia Lee and I got suspicious of the tenant as she keep asking for the paypal account to transfer the 3 months rental oneshot.&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">02 May 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-02May2018172823PM.html">Aaron Bennet request for good to be sent to Selangor</a>
-                            </h4>
-                            <p class="card-text">Aaron Bennet request for good to be sent to Selangor. Spoof paypal email from <a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="9ceff9eeeaf5fff9dcf5f2e8f0b2ecfde5ecfdf0b2fff3f1">[email&#160;protected]</a> (<a href="../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="7e1d111018170c131f0a171110111818171d1b3e131f17124c0b0d1f501d1113">[email&#160;protected]</a>) mention amnt deducted from customer ac but require the shipping&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">21 Apr 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-21Apr2018083858AM.html">Rental scam</a>
-                            </h4>
-                            <p class="card-text">Rental scam. Hello, It so good to read back from you. Little introduction about me. My name is Tan Mui Joo. I am a female working professional. I am working at the moment as an I.T consultant in China&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">08 Apr 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-08Apr2018223739PM.html">I had posted an ad for sofa set resale at Gumtree</a>
-                            </h4>
-                            <p class="card-text">I had posted an ad for sofa set resale at Gumtree. This guy claiming to be from China but using US number +1 (631) 315-4783,contacted me and was ready to give my price. I just managed to catch it as scam&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

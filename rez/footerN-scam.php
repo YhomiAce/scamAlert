@@ -193,7 +193,7 @@ Be An Advocate
     <li>
     <em class="fa fa-comments"></em>
     <div class="slider">
-    <a href="share-a-story.html">
+    <a href="../share-a-story.php">
     <em class="fa fa-comments"></em>
     <span class="icon-text">Share a Story</span>
     </a>
@@ -220,7 +220,7 @@ Be An Advocate
     <li>
     <em class="fa fa-search"></em>
     <div class="slider">
-    <a href="search.html">
+    <a href="../search.php">
     <em class="fa fa-search"></em>
     <span class="icon-text">Search Database</span>
     </a>

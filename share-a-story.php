@@ -1,16 +1,8 @@
 <?php 
-    require_once 'config/controller.php';
-    require_once('header.php') 
+    require('config/controller.php');
+    include('header.php') 
 
 ?>
-
-
-
-
-
-
-
-
 <main role="main"> 
 <div id="main_C002_Col00" class="sf_colsIn bg-dark jumbotron scam-encounter" data-sf-element="Container" data-placeholder-label="Container"><div class='container text-light py-5'><div class="container">
 <div class="row">
@@ -31,7 +23,7 @@ Please note that you have to fill in all the fields in the form.</p>
 
 </div><script src='../www.google.com/recaptcha/api.js'></script>
 
-<form action="#" method="POST">
+<form action="" method="POST" autocomplete='on' enctype="multipart/form-data">
     <div class="share-story">
         <h4>Personal details (please be assured that this information will not be shown on website)</h4>
         <div class="row">
@@ -496,4 +488,4 @@ Please note that you have to fill in all the fields in the form.</p>
 
 
 
- <?php require_once('footer.php') ?>
+ <?php include('footer.php') ?>

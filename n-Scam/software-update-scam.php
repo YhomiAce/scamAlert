@@ -1,7 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -430,72 +430,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'software-update-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">09 Feb 2021</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-09Feb2021122208PM.html">Beware of Tech Support scam!</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">There are impersonators trying to impersonate as Singtel staff. I received a call today, and the person claimed that my pc system has been hacked from unknown party in sentosa. They tried to scare me&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">22 May 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-22May2020173916PM.html">Scammer claimed to be from "Microsoft"</a>
-                            </h4>
-                            <p class="card-text">The scammer (lady with indian accent), pretended to be microsoft singapore called me twice (22/5/2020) and asked me to log into my computer saying that There were some foreign IP addresses which were&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">04 May 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-04May2020214556PM.html">Caller who claimed to be from "Microsoft" turned out to be a scammer</a>
-                            </h4>
-                            <p class="card-text">I received a call from a guy with a thick indian accent. he said my wife full name and WANT to SPEAK to her. He said he is from microsoft support claiming my wife computer had security issues, he need&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">30 Apr 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-30Apr2020202628PM.html">Beware of Software Update scam</a>
-                            </h4>
-                            <p class="card-text">received call from +65 3138 1701 at local time 18:48hrs on 30april2020. the guy identify himself calling from windows total care center, technical department. he said my computer just send windows an&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">30 Mar 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-30Mar2020111935AM.html">Scammer claimed that something was wrong with my internet connection</a>
-                            </h4>
-                            <p class="card-text">a man with an Indian accent called me to say that he is from singtel and they have detected abnormal behaviour from a third party accessing my internet which was slowing me down. my internet was indeed&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">15 Mar 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-15Mar2020123500PM.html">Call from Microsoft turned out to be a scam</a>
-                            </h4>
-                            <p class="card-text">I first received a phone call from a girl with Indian accent who claimed to be sophie soon from microsoft tech support team. She had my name, Email and number. She told me that there were problems with&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

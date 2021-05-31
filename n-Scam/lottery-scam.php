@@ -1,8 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -450,72 +449,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'lottery-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">14 Sep 2020</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-14Sep2020171803PM.html">If you are asked to provide your credit card details to enter a lucky draw, ignore!</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">My friend A contacted me asking for my phone number via messenger. They mentioned it is for shopee 5th yr special campaign. then they send you a code via this number +13246584447 which they asked you&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">06 Aug 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-06Aug2020120421PM.html">I was lured by the lucky draw prize!</a>
-                            </h4>
-                            <p class="card-text">1) caller called first time to conduct survey and shared that they had upcoming event in sg. 2) caller called A month after said event to say that i had won a prize even though i did not attend. The reason&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">04 Aug 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-04Aug2020174250PM.html">If you are promised a huge prize for a lucky draw that you didn't participate, beware!</a>
-                            </h4>
-                            <p class="card-text">https://scamalert.sg/stories-details/Story-10Jun2019161626PM https://scamalert.sg/stories-details/Story-01Aug2020123835PM Similarly to these cases above, i was contacted by a friendly taiwanese woman&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">01 Aug 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-01Aug2020123835PM.html">Scammer tried to lure me with huge prize money!</a>
-                            </h4>
-                            <p class="card-text">https://www.scamalert.sg/stories-details/Story-10Jun2019161626PM https://www.scamalert.sg/stories-details/Story-04Jun2018140259PM Similar to these cases, have received calls from unknown numbers. asking&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">15 Jul 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-15Jul2020162116PM.html">Don't be swayed by scammer's honeyed words</a>
-                            </h4>
-                            <p class="card-text">This man is from China and claimed live in Hong kong working in corporation that issue business license for company that wants to register in Hong Kong. This person was in my wechat for a long time, We&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">26 Apr 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-26Apr2020120003PM.html">Scammer got angry when I told him that I don't have a bank account</a>
-                            </h4>
-                            <p class="card-text">the scammer called using viber with the SAT logo, said i have won $500k, need my bank detail to transfer the money, i have told him, i dont have bank account and ask him to write a cheque so i can go&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

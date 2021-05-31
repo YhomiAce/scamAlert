@@ -1,6 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 <main role="main"> 
@@ -407,72 +408,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'loan-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">18 May 2021</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-18May2021140651PM.html">Beware of loan scams</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">I needed a loan and submitted my name & contact to a few companies found on Advertisement online. Benson from Tan and Jiang Enterprise Pte Ltd contacted with me under these number 8255 938? and 6978 841?,&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">10 May 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-10May2021212018PM.html">I lost over $4k to loan scam</a>
-                            </h4>
-                            <p class="card-text">I needed a loan and submitted my name & contact to a few companies found on google. Josh from s g credit called & asked for my ic pic & finance personal info After approving my loan, we discussed & signed&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">08 May 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-08May2021020355AM.html">I lost over $3k to loan scam</a>
-                            </h4>
-                            <p class="card-text">Saw online ad fuss free loan, contacted them and they says loan approval immediately, they ask for my ic front and back. When I realised something is wrong, too late, they ask u pay a admin charge of&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">07 May 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-07May2021050151AM.html">I lost over $2k to Loan scam</a>
-                            </h4>
-                            <p class="card-text">Please do not engage These LOAN financial experts from FB. They are using real companies DETAILS, pictures, license and address. Don't trust when they say fuss free applications.  I have been scammed&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">01 May 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-01May2021201433PM.html">Beware of loan scams!</a>
-                            </h4>
-                            <p class="card-text">I've recently fallen into a loan scam, came across this SMS ads and i wanted to take a loan for my credit card bills, i tired communicating with the scammer and they reassure me that this is a legit&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">24 Apr 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-24Apr2021023418AM.html">Only contact the licensed moneylenders via the contact details found on Ministry of Law's website</a>
-                            </h4>
-                            <p class="card-text">I was browsing for money lending options and i received a message from a loan consultant claimed to be from “jm? credi?”. Did a quick look up from ministry of law website, and saw the license number&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

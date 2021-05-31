@@ -1,5 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 <main role="main"> 
@@ -396,74 +398,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'online-travel-vacation-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">10 Oct 2019</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-10Oct2019160657PM.html">When you are asked to divulge your personal info, please check first!</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">a guy who claimed that he is from wyndham vacation and said that i am selected to get a special vacation treat on 10th october 2019 time 1640, and mentioned that i need to answer 5 pre-requisites questions&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">22 Jun 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-22Jun2018101542AM">I received a call #69208594 claiming to be representing Realty Access to assist with the sale of our Time share membership</a>
-                            </h4>
-                            <p class="card-text">I received a call #69208594 claiming to be representing Realty Access to assist with the sale of our Time share membership. We made an appointment to meet at their office at Chinatown Point #17-09. When&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">19 May 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-19May2018134959PM.html">On 17 May 2018, I purchase 5 pax air ticket to Bangkok for a vocation to Bangkok</a>
-                            </h4>
-                            <p class="card-text">On 17 May 2018, I purchase 5 pax air ticket to Bangkok for a vocation to Bangkok. I log in www.tripadvisor.com.sg to search for the best deal of air ticket. The Bravofly offer the best deal online and&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">21 Apr 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-21Apr2018122614PM.html">I had tried to book an apt for rent for 2 days on Agods/AirBnb</a>
-                            </h4>
-                            <p class="card-text">I had tried to book an apt for rent for 2 days on Agods/AirBnb. I got a mail from this id, asking me to send the money and the unit is confirmed. A sum of Euro 750 for 2 days rental. I was travelling&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">31 Mar 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-31Mar2018215859PM.html">Dear Sir/Madam,<br />
-<br />
-I am sathish, working in DBS bank, Singapore</a>
-                            </h4>
-                            <p class="card-text">Dear Sir/Madam, I am sathish, working in DBS bank, Singapore. I got that same scam call today 31Mar2018 12:55PM SGT who is telling calling from MoM singapore and said you are not checking properly while&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">18 Feb 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-18Feb2018153253PM.html">She offered low price tickets</a>
-                            </h4>
-                            <p class="card-text">She offered low price tickets. She was able to book one rountrip ticket for me so with my wife and son but she just sent e tickets first unless you keep calling her then she is going to send the itenerary.&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

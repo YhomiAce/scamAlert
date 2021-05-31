@@ -1,5 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 <main role="main"> 
@@ -393,61 +395,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'wangiri-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">01 Aug 2018</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-01Aug2018230136PM.html">Since 1st August 2018, i am getting numerous calls from this +370 numbers </a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">Since 1st August 2018, i am getting numerous calls from this +370 numbers . I have not pick up or called this number because its checked coming from Lithuania country which never makes sense since i don't&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">14 Mar 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-14Mar2018135948PM.html">I received a call from 62788112 on my mobile</a>
-                            </h4>
-                            <p class="card-text">I received a call from 62788112 on my mobile. The caller was quiet then just say "Postman, Postman". I went out to check but nobody was outside my door. Anyway, it didn't cross my mind how can a postman&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">12 Jan 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-12Jan2018130606PM.html">Receiving calls recently from the number +41799779623 originating  from switzerland, suspect it could be related to Wangiri scam</a>
-                            </h4>
-                            <p class="card-text">Receiving calls recently from the number +41799779623 originating from switzerland, suspect it could be related to Wangiri scam. Usually is a missed call, but if attend i hear automated voice of a lady&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">15 Dec 2016</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-15Dec2016104910AM.html">I have received a miss call and a VM from +65 68543000</a>
-                            </h4>
-                            <p class="card-text">I have received a miss call and a VM from +65 68543000. When i checked my VM box, it is an automated-voice message asking me to return call to the same number. The message says "I have a urgent message&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">28 Nov 2016</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-28Nov2016161458PM.html">Since 21 Nov 2016, I have received missed calls from Canada</a>
-                            </h4>
-                            <p class="card-text">Since 21 Nov 2016, I have received missed calls from Canada. Since I have no relatives, friends or colleagues in that country, I did not pick up the call. And the calls were usually Singapore 4-6pm which&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

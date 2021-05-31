@@ -1,4 +1,7 @@
-<?php include('headerN-scam.php') ?>
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
  <main role="main"> 
 
 
@@ -393,72 +396,38 @@
         <img src=" ../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+
+
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'apple-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">11 Oct 2018</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-11Oct2018180037PM.html">Hi Stomp, I would like to contribute my experience to help others to look out for digital scams</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">Hi Stomp, I would like to contribute my experience to help others to look out for digital scams. The scammer did send me an email and a link to "unfroze" my account, and it is true that I changed phone&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">30 Sep 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-30Sep2018165651PM.html">DEALT ON CAROUSELL FOR AN IPHONE X BRAND NEW SEALED SET FOR 1</a>
-                            </h4>
-                            <p class="card-text">DEALT ON CAROUSELL FOR AN IPHONE X BRAND NEW SEALED SET FOR 1.33K. THIS DUDE APPARENTLY HAS A SHOP MOBILE FRIEND IN MARINE PARADE. ENDED WORK LATE SO REQUESTED FOR DELIVERY. HE SENT AN IPHONE X SEALED&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">22 Sep 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-22Sep2018235516PM.html">21 Sep 2018</a>
-                            </h4>
-                            <p class="card-text">21 Sep 2018. A buyer from Gumtree was using WhatsApp-ed to contact me said interested to purchase the Iphone X Max that I listed on Gumtree, and he said he's buying it for his daughter birthday present&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">19 Sep 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-19Sep2018111655AM.html">A few weeks ago a man by the name Dan Baxter asked to be my friend on Instagram</a>
-                            </h4>
-                            <p class="card-text">A few weeks ago a man by the name Dan Baxter asked to be my friend on Instagram. He claimed to be in the army and doing a special assignment in Ukraine. Within a few days he asked me to purchase a iTunes Card&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">18 Sep 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-18Sep2018151835PM.html">17/8/18 went apple orchard to repair iphone7+ cannot startup</a>
-                            </h4>
-                            <p class="card-text">17/8/18 went apple orchard to repair iphone7+ cannot startup. they cannot repair offer to trade in new for $529 19/8 went eden to data retrieval sales say can repair for $120 in 1-2 hrs. after 4 hrs i&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">21 Jun 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-21Jun2018075221AM.html">I was trying to purchase hua Wei P20pro from a seller through shopee, seller contacted me via watsapps and explained why shoppe was slow to release payment to them and why the need buy direct</a>
-                            </h4>
-                            <p class="card-text">I was trying to purchase hua Wei P20pro from a seller through shopee, seller contacted me via watsapps and explained why shoppe was slow to release payment to them and why the need buy direct. He wanted&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
+                
     </div>
 
     
@@ -661,7 +630,7 @@
 </div>
 <div id="main_C025_Col00" class="sf_colsIn bg-dark  scam-encounter py-5" data-sf-element="Container" data-placeholder-label="Container"><div class='container text-center text-light py-5'><h1>Have you encountered a scam?</h1>
 <span class="lead">Share your stories. Help create awareness.</span><br>
-<a href="../share-a-story.html" class="btn btn-primary mt-4">Share Your Story</a>
+<a href="../share-a-story.php" class="btn btn-primary mt-4">Share Your Story</a>
 
 
 </div>

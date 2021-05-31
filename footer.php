@@ -123,16 +123,16 @@
     <h5><a href="support/quiz.html" title="Quiz">Quiz</a></h5>
     </li>
     <li>
-    <h5><a href="fight.php" title="Quiz"></a><a href="types-of-scams.html" title="Types of Scams">Types of Scams</a></h5>
+    <h5><a href="fight.php" title="Quiz"></a><a href="types-of-scams.php" title="Types of Scams">Types of Scams</a></h5>
     </li>
     <li>
     <h5><a href="types-of-scams.html" title="Types of Scams"></a><a href="resources/news.html" title="Media News">Media News</a></h5>
     </li>
     <li>
-    <h5><a href="resources/news.html" title="Media News"></a><a href="stories.html" title="Scam Stories">Scam Stories</a></h5>
+    <h5><a href="stories.php" title="Media News"></a><a href="stories.html" title="Scam Stories">Scam Stories</a></h5>
     </li>
     <li>
-    <h5><a href="stories.html" title="Scam Stories"></a><a href="share-a-story.html" title="Share Your Stories">Share Your Stories</a></h5>
+    <h5><a href="share-a-story.php" title="Scam Stories"></a><a href="share-a-story.html" title="Share Your Stories">Share Your Stories</a></h5>
     </li>
 </ul>
 
@@ -167,7 +167,7 @@ Be An Advocate
     <em class="fab fa-facebook-f"></em>
     <div class="slider">
     <em class="fab fa-facebook-f"></em>
-    <a href="#" target="_blank">
+    <a href="@" target="_blank">
     <span class="icon-text">Facebook</span>
     </a>
     </div>
@@ -220,7 +220,7 @@ Be An Advocate
     <li>
     <em class="fa fa-search"></em>
     <div class="slider">
-    <a href="search.html">
+    <a href="search.php">
     <em class="fa fa-search"></em>
     <span class="icon-text">Search Database</span>
     </a>

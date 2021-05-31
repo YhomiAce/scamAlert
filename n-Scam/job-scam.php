@@ -1,7 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -252,68 +252,6 @@ c) Receive a donation into their personal bank accounts and assist to deposit th
             <div class="col-lg-7 text-muted">
                 <div class="form-row align-items-center">
                     <div class="col-auto">
-                        <label for="filter-year">Filter by:</label>
-                        <label class="sr-only">Filter by</label>
-                    </div>
-                    <div class="col-xs-auto col-md-3">
-                        <select class="custom-select mb-2" id="ddlScamType" onchange="ddlScamOnSelect();">
-                            <option value="">All Type</option>
-                                <option value="apple-scam" >Apple Scam</option>
-                                <option value="car-rental-scam" >Car Rental Scam</option>
-                                <option value="cold-call-supplier-scam" >Cold Call Supplier Scam</option>
-                                <option value="credit-for-sex-scam" >Credit-for-Sex Scam</option>
-                                <option value="cyber-extortion-scam" >Cyber Extortion Scam</option>
-                                <option value="home-room-rental-scam" >Home/Room Rental Scam</option>
-                                <option value="impersonation-scam" >Impersonation Scam</option>
-                                <option value="inheritance-scam" >Inheritance Scam</option>
-                                <option value="internet-love-scam" >Internet Love Scam</option>
-                                <option value="investment-scam" >Investment Scam</option>
-                                <option value="job-scam" selected>Job Scam</option>
-                                <option value="kidnap-scam" >Kidnap Scam</option>
-                                <option value="loan-scam" >Loan Scam</option>
-                                <option value="lottery-scam" >Lottery Scam</option>
-                                <option value="money-mule-scam" >Money Mule Scam</option>
-                                <option value="online-purchase-scam" >Online Purchase Scam</option>
-                                <option value="online-travel-vacation-scam" >Online Travel Vacation Scam</option>
-                                <option value="paypal-email-scam" >PayPal Email Scam</option>
-                                <option value="phishing-scam" >Phishing Scam</option>
-                                <option value="scam-using-wechat" >Scam Using WeChat</option>
-                                <option value="social-media-whatsapp-scam" >Social Media Impersonation / Whatsapp Takeover Scam</option>
-                                <option value="software-update-scam" >Software Update Scam</option>
-                                <option value="spoofed-hacked-email-scam" >Spoofed/Hacked Email Scam</option>
-                                <option value="wangiri-scam" >Wangiri Scam</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <select class="custom-select mb-2" id="ddlYear" onchange="ddlYearOnSelect();">
-                            <option value="">Year</option>
-                                <option value="2016" >2016</option>
-                                <option value="2017" >2017</option>
-                                <option value="2018" >2018</option>
-                                <option value="2019" >2019</option>
-                                <option value="2020" >2020</option>
-                                <option value="2021" >2021</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label class="sr-only" for="filter-month">Filter by Month</label>
-                        <select class="custom-select mb-2" id="ddlMonth" onchange="ddlMonthOnSelect();">
-                            <option value="">Month</option>
-                                <option value="1" >Jan</option>
-                                <option value="2" >Feb</option>
-                                <option value="3" >Mar</option>
-                                <option value="4" >Apr</option>
-                                <option value="5" >May</option>
-                                <option value="6" >Jun</option>
-                                <option value="7" >Jul</option>
-                                <option value="8" >Aug</option>
-                                <option value="9" >Sep</option>
-                                <option value="10" >Oct</option>
-                                <option value="11" >Nov</option>
-                                <option value="12" >Dec</option>
-                        </select>
-                    </div>
-                    <div class="col-auto">
                         <label for="sort-by">Sort by:</label>
                         <label class="sr-only" for="sort-by">Sort by</label>
                     </div>
@@ -321,9 +259,6 @@ c) Receive a donation into their personal bank accounts and assist to deposit th
                         <select class="custom-select mb-2" id="ddlSortBy" onchange="ddlSortByOnSelect();">
                                     <option value="Latest" >Latest</option>
                                     <option value="Oldest" >Oldest</option>
-                                    <option value="Ascending" >Ascending</option>
-                                    <option value="Descending" >Descending</option>
-
                         </select>
                     </div>
                 </div>
@@ -416,74 +351,37 @@ c) Receive a donation into their personal bank accounts and assist to deposit th
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">12 May 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/beware-of-dodgy-jobs-online%21.html">Beware of dodgy jobs online!</a>
-                            </h4>
-                            <p class="card-text">They claimed they are doing "affiliated marketing" with online platforms like lazada, shoppee, zalora to boost reviews and sales. Then they will ask you to join a group, requiring my details and bank&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">18 Apr 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-18Apr2021140057PM.html">My bank account got frozen when I took a job that required me to transfer money to other bank accounts</a>
-                            </h4>
-                            <p class="card-text">First connect them through fb (her name is Janet yeoh), who claimed that her company needed an account admin. They asked me to provide my bank account details  in order to credit my salary to me.  Next,&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">21 Feb 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-21Feb2021225318PM.html">If the job advertisements look suspicious, don't respond</a>
-                            </h4>
-                            <p class="card-text">Under Facebook jobs. personal assistant category. there is quite a few of them with different names, mostly caucasians names, with a super vague profile. Their descriptions for the job will be "Looking&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">27 Aug 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-27Aug2020195840PM.html">Beware of dubious job offers and don't use your personal online shopping accounts to market goods for others!</a>
-                            </h4>
-                            <p class="card-text">There was a post on facebook about data entry part time job from home. Whatsapp number was given to contact. I contacted and i was told that job is about online marketing and i will earn $150 per month.&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">17 Aug 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-17Aug2020091127AM.html">Beware of jobs that offer too good to be true salary!</a>
-                            </h4>
-                            <p class="card-text">1) from sg.indeed.com - job advertisment Needed Personal Assistant For Accounting Life Style Gadg??? - Singapore $2,500 - $3,000 a month - Part-time, Temporary 2) 17/8/2020 - WHATSAPP TO 8535 5792 REQUEST&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">01 Jul 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-01Jul2020215759PM.html">I was lured to sign up a phone contract and ended up with huge bill to settle!</a>
-                            </h4>
-                            <p class="card-text">Was looking for part-time work when i saw a listing on carousell asking for someone to do a simple task, sign a phone contract and receive a reimbursement. happened somewhere in september 2019. Claimed&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-    </div>
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'job-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
 
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAllStories($conn,$allTypeId)
+    ?>
+
+
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body p-5">
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
+                            <h4 class="card-title">
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
+                            </h4>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+    <?php
+        }
+    ?>
+
+    </div>
+    <div class="row no-gutters no-gutters-border" id="showdivStoryList"></div>
     
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center pt-5 pb-5" id="ulPaging">
@@ -497,31 +395,6 @@ c) Receive a donation into their personal bank accounts and assist to deposit th
 
 
 
-            <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)" onclick="pagingOnClick('1')">
-                    1
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" onclick="pagingOnClick('2')">
-                    2
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" onclick="pagingOnClick('3')">
-                    3
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" onclick="pagingOnClick('4')">
-                    4
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" onclick="pagingOnClick('5')">
-                    5
-                </a>
-            </li>
 
             <li class="page-item">
                 <a class="page-link next" href="javascript:void(0)" aria-label="Next" onclick="pagingOnClick('6')">
@@ -535,150 +408,36 @@ c) Receive a donation into their personal bank accounts and assist to deposit th
 </div>
 
 <script type="text/javascript">
-    function ddlScamOnSelect() {
-        FilterAjax("");
-    }
-    function ddlYearOnSelect() {
-        FilterAjax("");
-    }
-    function ddlMonthOnSelect() {
-        FilterAjax("");
-    }
+    
     function ddlSortByOnSelect() {
-        FilterAjax("");
-    }
-    function pagingOnClick(page) {
-        FilterAjax(page);
-    }
-
-    function ddlScamOnSelect2() {
-        FilterAjax("");
-    }
-    function ddlYearOnSelect2() {
-        FilterAjax("");
-    }
-    function ddlMonthOnSelect2() {
-        FilterAjax("");
+        FilterAjax();
     }
     function ddlSortByOnSelect2() {
         FilterAjax("");
     }
 
-    function FilterAjax(page) {
+    function FilterAjax() {
         // show loading div
         $("#divLoading").show();
         $("#divStoryList").empty();
-
-        var scamType = $("#ddlScamType").val();
-        var year = $("#ddlYear").val();
-        var month = $("#ddlMonth").val();
-        var sortBy = $("#ddlSortBy").val();
-        if (IsMobileModel()) {
-            scamType = $("#ddlScamType2").val();
-            year = $("#ddlYear2").val();
-            month = $("#ddlMonth2").val();
-            sortBy = $("#ddlSortBy2").val();
-        }
-        var paging = page;
-        if (paging == "") paging = "1";
-
-        if (scamType == "") scamType = "";
-        if (year == "") year = "";
-        if (month == "") month = "";
-        if (sortBy == "") sortBy = txt_Latest;
-
+        
+        var sortValue  =  $('#ddlSortBy').val()
+        var search     =   "job-scam"
         $.ajax({
-            type: "POST",
-            url: "/scam-details/GetStoryListAjax/",
+            url: "../config/actions.php",
+            method:"POST",
             data: {
-                scamType: scamType,
-                year: year,
-                month: month,
-                page: paging,
-                sortBy: sortBy
+                sort:sortValue,
+                key:search
             },
-            success: function (data) {
-                var result = JSON.parse(data.result);
-
-                // update paging info
-                var currentPageItemsCount = result.CurrentPageItemsCount;
-                var totalItemsCount = result.TotalItemsCount;
-                $("#divPagingInfo").text("Showing " + currentPageItemsCount + " of " + totalItemsCount + " Stories")
-
-
-                // generate story list
-                var listItemTemplate = '<div class="col-md-6"><div class="card"><div class="card-body p-5"><div class="card-date text-primary">#Date#</div><h4 class="card-title"><a class="text-dark" href="#Url#">#Title#</a></h4><p class="card-text">#Description#</p></div></div></div>';
-                var storyList = result.StoryList;
-                for (var i = 0; i < storyList.length; i++) {
-                    var sDate = storyList[i].Date;
-                    var sTitle = storyList[i].Title;
-                    var sDescription = storyList[i].Description;
-                    var sUrl = storyList[i].Url;
-
-                    var newItem = $(listItemTemplate.replace("#Date#", sDate).replace("#Url#", sUrl).replace("#Title#", sTitle).replace("#Description#", sDescription));
-                    $("#divStoryList").append(newItem);
-                }
-                if (storyList.length == 0) {
-                    $("#divStoryList").append($(`<div class="col-md-12"><div style="padding-left: 15px;"><h2>There are currently no stories submitted.</h2></div></div>`));
-                }
-
-
-                // generate paging
-                $("#ulPaging").empty();
-                var currentPage = result.CurrentPage * 1;
-                var totalPage = result.TotalPage * 1;
-                var startPage = 1;
-                if (totalPage > 5) {
-                    if (currentPage > 3) {
-                        startPage = currentPage - 2;
-                    }
-                    if (startPage + 4 > totalPage) {
-                        startPage = totalPage - 4;
-                    }
-                }
-                var liClass = "page-item";
-                var liClassActive = "page-item active";
-
-                var prePagingTemplate = '<li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Previous" onclick="pagingOnClick(\'#Paging#\')"><span aria-hidden="true">❮</span><span class="sr-only">Previous</span></a></li>';
-                var nextPagingTemplate = '<li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Next" onclick="pagingOnClick(\'#Paging#\')"><span aria-hidden="true">❯</span><span class="sr-only">Next</span></a></li>';
-                var pagingTemplate = '<li class="#ActiveClass#"><a class="page-link" href="javascript:void(0)" onclick="pagingOnClick(\'#Paging#\')">#Paging#</a></li>';
-
-                if (currentPage - 5 > 0) {
-                    var newRow = $(prePagingTemplate.replace("#Paging#", (currentPage - 5) + ""));
-                    $("#ulPaging").append(newRow);
-                }
-                else {
-                    var newRow = $(prePagingTemplate.replace("#Paging#", "1"));
-                    $("#ulPaging").append(newRow);
-                }
-                for (var j = startPage; j <= (startPage + 4 > totalPage ? totalPage : startPage + 4) ; j++) {
-                    var newRowStr = pagingTemplate.replace("#Paging#", j + "").replace("#Paging#", j + "");
-
-                    if (j == currentPage) { newRowStr = newRowStr.replace("#ActiveClass#", liClassActive); }
-                    else { newRowStr = newRowStr.replace("#ActiveClass#", liClass); }
-
-                    var newRow = $(newRowStr);
-                    $("#ulPaging").append(newRow);
-                }
-                if (currentPage + 5 <= totalPage) {
-                    var newRow = $(nextPagingTemplate.replace("#Paging#", (currentPage + 5) + ""));
-                    $("#ulPaging").append(newRow);
-                } else {
-                    var newRow = $(nextPagingTemplate.replace("#Paging#", totalPage + ""));
-                    $("#ulPaging").append(newRow);
-                }
-
-                // hide loading div
-                $("#divLoading").hide();
-            },
-            error: function (error) {
-                alert(error.data);
-
-                // hide loading div
+            success: function(data){
+                $('#showdivStoryList').html(data)
                 $("#divLoading").hide();
             }
-        });
+        })
+        
     }
+       
 </script>
 
 </div>

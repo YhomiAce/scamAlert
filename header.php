@@ -1,3 +1,18 @@
+
+<?php  
+    require_once 'config/controller.php';
+    $OddfetchTypeOfScam = fetchTypeOfScam($conn);
+    
+    $fetchTypeOfScam    =    array();
+
+    foreach($OddfetchTypeOfScam as $fetchType){
+        if(!in_array($fetchType,$fetchTypeOfScam)){
+            $fetchTypeOfScam[]=$fetchType;
+        }
+    }
+
+    sort($fetchTypeOfScam);
+?>
 <!DOCTYPE html>
 <html lang="en"> 
     <head>     
@@ -49,13 +64,13 @@ Sys.Application._enableHistoryInScriptManager();
 
 <div class="fixed-top navbar navbar-light bg-white navbar-static-top navbar-expand-xl border-bottom box-shadow">
     <div class="container">
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"><img src="images/default-source/default-album/icons/icon-menu941c.png?sfvrsn=aa3bbd50_2" alt="icon-menu" /></button>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"><img src="default-album/icons/icon-menu941c.png?sfvrsn=aa3bbd50_2" alt="icon-menu" /></button>
         <a class="navbar-brand mr-auto" href="index.php">
             <img src="default-album/logo-scam-alert.png" alt="Scam Alert! Logo" title="Scam Alert! Logo" />&nbsp;
         </a>
         <div class="ml-auto d-block d-sm-none">
-            <a href="tel:1800-722-6688" class="mr-4" title="Hotline"><img src="images/default-source/default-album/icons/icon-phone.png" alt="Hotline" /></a>
-            <a href="search.html" class="mr-4" title="Search"><img src="images/default-source/default-album/icons/icon-magnifier.png" alt="Search" /></a>
+            <a href="tel:1800-722-6688" class="mr-4" title="Hotline"><img src="default-album/icons/icon-phone.png" alt="Hotline" /></a>
+            <a href="search.html" class="mr-4" title="Search"><img src="default-album/icons/icon-magnifier.png" alt="Search" /></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -76,30 +91,14 @@ Sys.Application._enableHistoryInScriptManager();
                                 </li>
                                 <li class="col-sm-9 d-none d-sm-block">
                                     <ul>
-                                        <li><a href="n-Scam/apple-scam.php">Apple Scam</a></li>
-                                        <li><a href="n-Scam/car-rental-scam.php">Car Rental Scam</a></li>
-                                        <li><a href="n-Scam/cold-call-supplier-scam.php">Cold Call Supplier Scam</a></li>
-                                        <li><a href="n-Scam/credit-for-sex-scam.php">Credit-for-Sex Scam</a></li>
-                                        <li><a href="n-Scam/cyber-extortion-scam.php">Cyber Extortion Scam</a></li>
-                                        <li><a href="n-Scam/home-room-rental-scam.php">Home/Room Rental Scam</a></li>
-                                        <li><a href="n-Scam/impersonation-scam.php">Impersonation Scam</a></li>
-                                        <li><a href="n-Scam/inheritance-scam.php">Inheritance Scam</a></li>
-                                        <li><a href="n-Scam/internet-love-scam.php">Internet Love Scam</a></li>
-                                        <li><a href="n-Scam/investment-scam.php">Investment Scam</a></li>
-                                        <li><a href="n-Scam/job-scam.php">Job Scam</a></li>
-                                        <li><a href="n-Scam/kidnap-scam.php">Kidnap Scam</a></li>
-                                        <li><a href="n-Scam/loan-scam.php">Loan Scam</a></li>
-                                        <li><a href="n-Scam/lottery-scam.php">Lottery Scam</a></li>
-                                        <li><a href="n-Scam/money-mule-scam.php">Money Mule Scam</a></li>
-                                        <li><a href="n-Scam/online-purchase-scam.php">Online Purchase Scam</a></li>
-                                        <li><a href="n-Scam/online-travel-vacation-scam.php">Online Travel Vacation Scam</a></li>
-                                        <li><a href="n-Scam/paypal-email-scam.php">PayPal Email Scam</a></li>
-                                        <li><a href="n-Scam/phishing-scam.php">Phishing Scam</a></li>
-                                        <li><a href="n-Scam/scam-using-wechat.php">Scam Using WeChat</a></li>
-                                        <li><a href="n-Scam/social-media-whatsapp-scam.php">Social Media Impersonation / Whatsapp Takeover Scam</a></li>
-                                        <li><a href="n-Scam/software-update-scam.php">Software Update Scam</a></li>
-                                        <li><a href="n-Scam/spoofed-hacked-email-scam.php">Spoofed/Hacked Email Scam</a></li>
-                                        <li><a href="n-Scam/wangiri-scam.php">Wangiri Scam</a></li>
+                                        <?php
+                                            foreach($fetchTypeOfScam as $typeofScam){
+                                        ?>
+                                            <li><a href="n-Scam/<?php echo $typeofScam ?>.php"><?php  echo ucwords(str_replace("-"," ",$typeofScam)) ?></a></li>
+
+                                        <?php
+                                            }
+                                        ?>
                                     </ul>
                                 </li>
                             </div>

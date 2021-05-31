@@ -1,9 +1,7 @@
-<?php include('headerN-scam.php')?>
-
-
-
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -397,7 +395,7 @@
                 </select>
             </div>
         </div>
-        <div class="results text-muted text-center mt-5 pb-2">Showing 6 of 30 Stories</div>
+        <div class="results text-muted text-center mt-5 pb-2">Showing <?php sizeof($fetchTypeOfScam)  ?> of <?php sizeof($fetchTypeOfScam)  ?> Stories</div>
     </div>
 
     
@@ -405,72 +403,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+                
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'car-rental-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">05 Nov 2018</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-Car-Rental-Scam-05Nov-2018.html">Car Rental  Scam - Kelvin Tan</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">i am a grab driver driving a 6 seaters premium care was told by the so called name kelvin tan he wi get back to me ASAP.after a few days later he called me up to fetch girls from vietnam and i will earn&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">30 Oct 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-30Oct2018213725PM.html">On 13rd of October Tenerife South I was lied by an employee called Maria Jose that I cannot pay the car deposit by debit card(my credit card had expired 2 month before and I hadn't noticed)</a>
-                            </h4>
-                            <p class="card-text">On 13rd of October Tenerife South I was lied by an employee called Maria Jose that I cannot pay the car deposit by debit card(my credit card had expired 2 month before and I hadn't noticed). The only&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">31 Aug 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-31Aug2018204312PM.html">My mobike 30D pass was auto renew on22 Aug2018- exp Sep Without my Approval</a>
-                            </h4>
-                            <p class="card-text">My mobike 30D pass was auto renew on22 Aug2018- exp Sep Without my Approval. After 2 ride, Mobike claimed my acct freeze n start to chg me 0.50cts when I unlock on 30 Aug onward while my 30D Pass is still&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">31 Jul 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-31Jul2018003025AM.html">A bankruptcy using his father name registering a company </a>
-                            </h4>
-                            <p class="card-text">A bankruptcy using his father name registering a company . Using the company MI destino which is listed at sgcarmart . He claim to be the registered owner and deal in car. Operation modus is the same.&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">10 Jun 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-10Jun2018004110AM.html">I was looking for a car to rent during the Hari Raya weekend from 14 June 2018 to 18 June 2018</a>
-                            </h4>
-                            <p class="card-text">I was looking for a car to rent during the Hari Raya weekend from 14 June 2018 to 18 June 2018. Responded to an ad in Carousell that had very little details and request to PM for more details. When in&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">27 Nov 2017</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-27Nov2017171252PM.html">- Booked for a rental car in australia and paid through the website</a>
-                            </h4>
-                            <p class="card-text">- Booked for a rental car in australia and paid through the website. - All seemed in order and info on the site stated that there were no extra charges. - Upon arrival at the airport, there was no booking&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
     </div>
 
     
@@ -483,15 +444,11 @@
                     <span class="sr-only">Previous</span>
                 </a>
             </li>
-
-
-
             <li class="page-item active">
                 <a class="page-link" href="javascript:void(0)" onclick="pagingOnClick('1')">
                     1
                 </a>
             </li>
-
             <li class="page-item">
                 <a class="page-link next" href="javascript:void(0)" aria-label="Next" onclick="pagingOnClick('1')">
                     <span aria-hidden="true">❯</span>
@@ -653,7 +610,7 @@
 </div>
 <div id="main_C025_Col00" class="sf_colsIn bg-dark  scam-encounter py-5" data-sf-element="Container" data-placeholder-label="Container"><div class='container text-center text-light py-5'><h1>Have you encountered a scam?</h1>
 <span class="lead">Share your stories. Help create awareness.</span><br>
-<a href="../share-a-story.html" class="btn btn-primary mt-4">Share Your Story</a>
+<a href="../share-a-story.php" class="btn btn-primary mt-4">Share Your Story</a>
 
 
 </div>

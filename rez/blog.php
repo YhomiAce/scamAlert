@@ -1,4 +1,6 @@
-<?php include('headerN-scam.php') ?>
+<?php 
+    require_once 'headerN-scam.php'; 
+?>
 
 
 
@@ -540,4 +542,7 @@ If you wish to read SPF's media releases, please visit this <a href="https://www
 
 
 
- <?php include('footerN-scam.php') ?>
+
+ <?php 
+ require_once 'footerN-scam.php';
+?>

@@ -1,5 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 
@@ -394,72 +396,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+                
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'cold-call-supplier-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">13 Sep 2018</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-13Sep2018121629PM.html">I got a call from a that my caller id displayed as  local cell phone</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">I got a call from a that my caller id displayed as local cell phone. Thinking it could be a friends new cell number or a contact which I have not saved. I answered the call and was shocked that a voice&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">22 Aug 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-22Aug2018130208PM.html">Received a phone call with a voice message saying "This is Singapore High Court</a>
-                            </h4>
-                            <p class="card-text">Received a phone call with a voice message saying "This is Singapore High Court. You have an outstanding summon. Press 9. Scammer's details: 63550644...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">15 Aug 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-15Aug2018112057AM.html">Receive a phone call claiming that i had a overseas parcel undelivered, if still unclaimed will be returned to original sender</a>
-                            </h4>
-                            <p class="card-text">Receive a phone call claiming that i had a overseas parcel undelivered, if still unclaimed will be returned to original sender. i hang up directly option 2 i cannot find a suitable option...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">15 Aug 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-15Aug2018092007AM.html">chinese automated voice recording wanting receiver to press "1"</a>
-                            </h4>
-                            <p class="card-text">chinese automated voice recording wanting receiver to press "1"...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">02 Aug 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-02Aug2018152425PM.html">automated call from DHL to dial 9 to continue, i hung up</a>
-                            </h4>
-                            <p class="card-text">automated call from DHL to dial 9 to continue, i hung up...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">10 Jul 2018</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-10Jul2018134758PM.html">Take note of the number</a>
-                            </h4>
-                            <p class="card-text">Take note of the number. These are scumbags. Voice recordings from chinese woman to say you have some courier get compounded by police. I save a copy of the recordings. Why are the police not doing anything&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
     </div>
 
     

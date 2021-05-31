@@ -1,6 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 <main role="main"> 
@@ -414,72 +415,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'phishing-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">26 May 2021</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-26May2021161220PM.html">Scammer used quarantine to threaten me</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">It's a female voice. Sounds like a Chinese national with a strong Chinese accent. Claimed to be calling from the authorities. To notify me that this is the final notification of my quarantine order and&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">26 May 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-26May2021132323PM.html">Call from "DBS" turned out to be a fake</a>
-                            </h4>
-                            <p class="card-text">I keep getting calls from various numbers. a recorded message first claims that they're from DBS  in English. Then it goes on to say hold the line, and then something in chinese which i don't understand.&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">24 May 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-24May2021164644PM.html">Look out for the + prefix. If it's there, it's most likely a scam</a>
-                            </h4>
-                            <p class="card-text">Been receiving recorded fake calls from DBS bank saying they have been trying to reach me about an issue with my account and they sounded like i need to take an action. The calls are from these numbers&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">24 May 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-24May2021140437PM.html">Beware that there are fake calls from "DBS"</a>
-                            </h4>
-                            <p class="card-text">1. received a call on 24 May 2021, at 1:55PM from this number and it was a recorded message stating that i did not respond or reply to dbs despite repeated attempts. I was then asked to press '3' to continue&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">21 May 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-21May2021145407PM.html">Beware of phone impersonation scam</a>
-                            </h4>
-                            <p class="card-text">I received a call from +65 8745574? today. It claimed from MOH and relates to quarantine asking me to report to MOH HQ by 2hrs later...I asked why I need to quarantine? He Claimed that I visited TTSH!&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">20 May 2021</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-20May2021164442PM.html">Beware of scam calls </a>
-                            </h4>
-                            <p class="card-text">1) received a call from +65 number today. It was a robocall claiming to be from MOH and relates to vaccination. Upon selecting the next, it was transferred to a Mandarin speaking person who claimed he&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
+
     </div>
 
     

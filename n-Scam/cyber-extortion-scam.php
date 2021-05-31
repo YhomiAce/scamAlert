@@ -1,8 +1,7 @@
-<?php include('headerN-scam.php') ?>
-
-
-
-
+<?php 
+    include('headerN-scam.php');
+    $storyIds            = fetchId($conn);
+?>
 
 
 <main role="main"> 
@@ -399,72 +398,35 @@
         <img src="../default-album/evidence/loading.gif" />
     </div>
     <div class="row no-gutters no-gutters-border" id="divStoryList">
+                
+    <?php
+        $allTypeIds=fetchTypeOfScam_forEach($conn,'cyber-extortion-scam');
+        rsort($allTypeIds);
+        // print_r($allTypeIds)
+
+        foreach($allTypeIds as $allTypeId){
+            $storyIdsDetails     =   fetchAll($conn,$allTypeId)
+    ?>
+
+
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body p-5">
-                            <div class="card-date text-primary">29 Jun 2020</div>
+                            <div class="card-date text-primary"><?php echo explode(" ",$storyIdsDetails['date'])[0]  ?></div>
                             <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-29Jun2020160543PM.html">Scammer got hold of me in a compromising position</a>
+                                <a class="text-dark" href="../stories/view_story.php?story=<?php echo $storyIdsDetails['storyToken']?>"><?php echo $storyIdsDetails['scammer_report']  ?></a>
                             </h4>
-                            <p class="card-text">met a girl through Tinder and proceed to Whatsapp. After chatting for a while, she asked if we wanted to do a video call to chat. I was bored so I agreed. shortly after the chat did get a bit flirty and&hellip;...</p>
+                            <p class="card-text"><?php echo substr($storyIdsDetails['scam_exp'],0,400)  ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">24 Jun 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-24Jun2020043341AM.html">Scammer threatened to release compromising footage</a>
-                            </h4>
-                            <p class="card-text">Met a girl on tinder, seemed sincere after few text. invited me to watch her live stream. downloaded the app and had an error (red flag!). agreed to sext as compensation, after the deed, she demanded&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">16 Apr 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-16Apr2020165502PM.html">Don't reply to Email Extortion email</a>
-                            </h4>
-                            <p class="card-text">Example to Cyber Extortion email:  It seems that, (PASSWORD), is your password. I need your full attention for the coming Twenty-four hrs, or I may make sure you that you live out of shame for the rest&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">16 Apr 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-16Apr2020114725AM.html">If you received this cyber extortion email, DELETE!</a>
-                            </h4>
-                            <p class="card-text">I have received this email from the hacker this morning demanding for usd 2,000 worth of bitcoin. pls ensure you don't reply and change the passwords for the accounts related to the password mentioned&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">15 Apr 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-15Apr2020102008AM.html">Received this Cyber Extortion email? Delete and block it</a>
-                            </h4>
-                            <p class="card-text">An example of Cyber Extortion Email: 𝐋𝐞𝐭𝐬 𝐠𝐞𝐭 𝐬𝐭𝐫𝐚𝐢𝐠𝐡𝐭 𝐭𝐨 𝐩𝐨𝐢𝐧𝐭. 𝐈 𝐚𝐦 𝐰𝐞𝐥𝐥 𝐚𝐰𝐚𝐫𝐞 xxxxxxxx 𝐢𝐬 𝐲𝐨𝐮𝐫 𝐩𝐚𝐬𝐬𝐰𝐨𝐫𝐝. 𝐘𝐨𝐮 𝐝𝐨𝐧'𝐭 𝐤𝐧𝐨𝐰 𝐦𝐞 𝐚𝐧𝐝 𝐲𝐨𝐮&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body p-5">
-                            <div class="card-date text-primary">14 Apr 2020</div>
-                            <h4 class="card-title">
-                                <a class="text-dark" href="../stories-details/Story-14Apr2020140704PM.html">Ignore Cyber Extortion email!</a>
-                            </h4>
-                            <p class="card-text">Got this this morning. do not reply. anyway, the password provided is 4 years old. 𝐈 𝐡𝐚𝐯𝐞 𝐯𝐢𝐝𝐞𝐨 𝐨𝐟 𝐲𝐨𝐮 𝐰𝐡𝐢𝐥𝐞 𝐲𝐨𝐮 𝐰𝐞𝐫𝐞 𝐩𝐥𝐚𝐲𝐢𝐧𝐠 𝐰𝐡𝐢𝐥𝐞 𝐛𝐫𝐨𝐰𝐬𝐢𝐧𝐠 𝐩𝐨𝐫𝐧 𝐰𝐞𝐛𝐬𝐢𝐭𝐞𝐬&hellip;...</p>
-                        </div>
-                    </div>
-                </div>
+
+
+
+    <?php
+        }
+    ?>
     </div>
 
     
